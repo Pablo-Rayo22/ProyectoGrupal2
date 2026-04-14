@@ -1,11 +1,8 @@
 using UnityEngine;
 
-[RequireComponent (typeof(CapsuleCollider))]
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Animator))]
-
-public class MovimientoJugador : MonoBehaviour
+public class MovimientoEnemigo : MonoBehaviour
 {
+
     public float velocidad = 5f;
     public float fuerzaSalto = 7f;
 
@@ -22,14 +19,14 @@ public class MovimientoJugador : MonoBehaviour
     public AudioClip sonidoPasos;
 
     private Rigidbody rb;
-    private Animator animator;
+    //private Animator animator;
 
     private bool enSuelo;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>();
+        //animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -47,38 +44,29 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         // SALTO
-        if (Input.GetKeyDown(KeyCode.Space) && enSuelo)
-        {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, fuerzaSalto, rb.linearVelocity.z);
-        }
-
-        // DISPARO
-        if (Input.GetMouseButtonDown(0))
-        {
-            Disparar();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && enSuelo)
+        //{
+        //    rb.linearVelocity = new Vector3(rb.linearVelocity.x, fuerzaSalto, rb.linearVelocity.z);
+        //}
 
         // 🔊 SONIDO DE PASOS
-        if (direccion.magnitude > 0.1f && enSuelo)
-        {
-            if (!audioPasos.isPlaying)
-            {
-                audioPasos.clip = sonidoPasos;
-                audioPasos.loop = true;
-                audioPasos.Play();
-            }
-        }
-        else
-        {
-            if (audioPasos.isPlaying)
-            {
-                audioPasos.Stop();
-            }
-        }
+        //if (direccion.magnitude > 0.1f && enSuelo)
+        //{
+        //    if (!audioPasos.isPlaying)
+        //    {
+        //        audioPasos.clip = sonidoPasos;
+        //        audioPasos.loop = true;
+        //        audioPasos.Play();
+        //    }
+        //}
+        //else
+        //{
+        //    if (audioPasos.isPlaying)
+        //    {
+        //        audioPasos.Stop();
+        //    }
+        //}
 
-        // ANIMACIONES
-        animator.SetFloat("Velocidad", direccion.magnitude);
-        animator.SetBool("EnSuelo", enSuelo);
     }
 
     void FixedUpdate()
@@ -130,15 +118,23 @@ public class MovimientoJugador : MonoBehaviour
         rb.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 
-    void Disparar()
-    {
-        GameObject proyectil = Instantiate(
-            proyectilPrefab,
-            puntoDisparo.position,
-            transform.rotation
-        );
+    //void Disparar()
+    //{
+    //    GameObject proyectil = Instantiate(
+    //        proyectilPrefab,
+    //        puntoDisparo.position,
+    //        transform.rotation
+    //    );
 
-        Rigidbody rbProyectil = proyectil.GetComponent<Rigidbody>();
-        rbProyectil.linearVelocity = transform.forward * fuerzaDisparo;
+    //    Rigidbody rbProyectil = proyectil.GetComponent<Rigidbody>();
+    //    rbProyectil.linearVelocity = transform.forward * fuerzaDisparo;
+    //}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Agua"))
+        {
+            Debug.Log("He caido en Agua");
+        }
     }
 }
