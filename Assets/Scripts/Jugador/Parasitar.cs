@@ -13,6 +13,7 @@ public class Parasitar : MonoBehaviour
     private void Awake()
     {
         enemigo.enabled = false;
+        jugador.GetComponent<MeshRenderer>().enabled = false;
     }
 
     private void Update()
@@ -68,7 +69,7 @@ public class Parasitar : MonoBehaviour
             
             renderers = jugador.GetComponentsInChildren<Renderer>();
 
-            for (int i = 0; i < renderers.Length; i++)
+            for (int i = 1; i < renderers.Length; i++)
             {
                 renderers[i].enabled = true;
             }
