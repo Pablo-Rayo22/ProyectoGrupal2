@@ -43,30 +43,6 @@ public class MovimientoEnemigo : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacion, 15f * Time.deltaTime);
         }
 
-        // SALTO
-        //if (Input.GetKeyDown(KeyCode.Space) && enSuelo)
-        //{
-        //    rb.linearVelocity = new Vector3(rb.linearVelocity.x, fuerzaSalto, rb.linearVelocity.z);
-        //}
-
-        // 🔊 SONIDO DE PASOS
-        //if (direccion.magnitude > 0.1f && enSuelo)
-        //{
-        //    if (!audioPasos.isPlaying)
-        //    {
-        //        audioPasos.clip = sonidoPasos;
-        //        audioPasos.loop = true;
-        //        audioPasos.Play();
-        //    }
-        //}
-        //else
-        //{
-        //    if (audioPasos.isPlaying)
-        //    {
-        //        audioPasos.Stop();
-        //    }
-        //}
-
     }
 
     void FixedUpdate()
@@ -116,25 +92,5 @@ public class MovimientoEnemigo : MonoBehaviour
         // EVITAR GIROS LOCOS
         rb.angularVelocity = Vector3.zero;
         rb.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-    }
-
-    //void Disparar()
-    //{
-    //    GameObject proyectil = Instantiate(
-    //        proyectilPrefab,
-    //        puntoDisparo.position,
-    //        transform.rotation
-    //    );
-
-    //    Rigidbody rbProyectil = proyectil.GetComponent<Rigidbody>();
-    //    rbProyectil.linearVelocity = transform.forward * fuerzaDisparo;
-    //}
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Agua"))
-        {
-            Debug.Log("He caido en Agua");
-        }
     }
 }

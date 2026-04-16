@@ -2,7 +2,6 @@ using UnityEngine;
 
 [RequireComponent (typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Animator))]
 
 public class MovimientoJugador : MonoBehaviour
 {

@@ -10,7 +10,6 @@ public class Parasitar : MonoBehaviour
 
     private bool enemigoParasitado = false;
     private Renderer[] renderers;
-
     private void Awake()
     {
         enemigo.enabled = false;
@@ -38,27 +37,27 @@ public class Parasitar : MonoBehaviour
 
             OcultarPersonaje();
 
-            // Activas control del enemigo
-            enemigo.enabled = true;
+            
+            enemigo.enabled = true; // Activamos  el control del enemigo
 
-            // Pasar cámara a enemigo
-            camara.objetivo = enemigo.transform;
+            
+            camara.objetivo = enemigo.transform; // Pasamos la cámara a enemigo
         }
 
     }
         private void OcultarPersonaje() {
         
-        renderers = jugador.GetComponentsInChildren<Renderer>();
-        for (int i = 0; i<renderers.Length; i++) {
-            //Desactiva el renderizado del jugador y sus componentes hijos
-            renderers[i].enabled = false;
-        }
+            renderers = jugador.GetComponentsInChildren<Renderer>();
+            for (int i = 0; i<renderers.Length; i++) {
+                //Desactiva el renderizado del jugador y sus componentes hijos
+                renderers[i].enabled = false;
+            }
+            
+            jugador.enabled = false;
             jugador.audioPasos.Stop();
             jugador.audioPasos.enabled = false;
             jugador.GetComponentInChildren<AudioSource>().Stop();
-
-            //jugador.GetComponent<Collider>().enabled = false;
-    }
+        }
 
     private void Desinfectar() {
             enemigoParasitado = false;
@@ -73,8 +72,11 @@ public class Parasitar : MonoBehaviour
             {
                 renderers[i].enabled = true;
             }
+
+            
+            jugador.enabled = true; //Devolvemos el control al jugador
+            camara.objetivo = jugador.transform; //Pasamos la cámara al jugador
             jugador.audioPasos.enabled = true;
             jugador.audioPasos.Play();
-
     }
 }
