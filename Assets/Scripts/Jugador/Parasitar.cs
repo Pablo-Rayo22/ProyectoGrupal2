@@ -68,6 +68,9 @@ public class Parasitar : MonoBehaviour
             }
 
             jugador.transform.position = new Vector3(enemigo.transform.position.x, transform.position.y, transform.position.z);
+            Vector3 rotacionDestino = jugador.transform.eulerAngles;
+            rotacionDestino.y = enemigo.transform.eulerAngles.y;
+            jugador.transform.eulerAngles = rotacionDestino;
 
             renderers = jugador.GetComponentsInChildren<Renderer>();
 

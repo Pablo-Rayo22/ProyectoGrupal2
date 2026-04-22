@@ -69,8 +69,8 @@ public class MovimientoEnemigo : MonoBehaviour
         // Mover al personaje
         controller.Move(moveDirection * currentSpeed * Time.deltaTime);
 
-        // ROTACIÓN ESTÁNDAR 
-        // Hacemos que el personaje gire hacia donde se está moviendo
+        
+        // Hacer que el personaje gire hacia donde se está moviendo
         if (moveDirection.magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
@@ -90,6 +90,14 @@ public class MovimientoEnemigo : MonoBehaviour
 
         // ACTUALIZAR ANIMACIONES
         UpdateAnimations(moveDirection.magnitude, isRunning);
+
+        /* DISPARO de bolas de fuego
+    if (Input.GetMouseButtonDown(0))
+    {
+           //Disparar();
+    }*/
+
+        // 🔊 SONIDO DE PASOS
 
         if (moveDirection.magnitude > 0.1f && isGrounded)
         {
@@ -111,8 +119,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
     void UpdateAnimations(float moveMagnitude, bool isRunning)
     {
-        // Parámetro para velocidad de movimiento (0 a 1)
-        float speedPercent = moveMagnitude / runSpeed;
+        // Parámetro para velocidad de movimiento 
         animator.SetFloat("Speed", moveMagnitude);
 
         // Parámetro para saber si está corriendo
@@ -126,13 +133,7 @@ public class MovimientoEnemigo : MonoBehaviour
     }
 
 
-    /* DISPARO
-    if (Input.GetMouseButtonDown(0))
-    {
-           //Disparar();
-    }*/
-
-    // 🔊 SONIDO DE PASOS
+    
     
 
 
