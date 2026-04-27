@@ -6,6 +6,7 @@ public class Parasitar : MonoBehaviour
     public GameObject proyectil;
     public MovimientoJugador jugador;
     public MovimientoEnemigo enemigo;
+    public IAenemigo iaenemigo;
     public CamaraSeguimiento camara;
 
     private bool enemigoParasitado = false;
@@ -40,6 +41,7 @@ public class Parasitar : MonoBehaviour
 
             
             enemigo.enabled = true; // Activamos  el control del enemigo
+            iaenemigo.enabled = false; //desactivamos su IA
 
             
             camara.objetivo = enemigo.transform; // Pasamos la cámara a enemigo
@@ -68,9 +70,6 @@ public class Parasitar : MonoBehaviour
             }
 
             jugador.transform.position = new Vector3(enemigo.transform.position.x, transform.position.y, transform.position.z);
-            Vector3 rotacionDestino = jugador.transform.eulerAngles;
-            rotacionDestino.y = enemigo.transform.eulerAngles.y;
-            jugador.transform.eulerAngles = rotacionDestino;
 
             renderers = jugador.GetComponentsInChildren<Renderer>();
 
