@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Proyectil
+  - Caja
   layers:
   - Default
   - TransparentFX

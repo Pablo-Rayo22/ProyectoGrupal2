@@ -310,7 +310,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3224434164156556722
 MonoBehaviour:
@@ -326,7 +326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Proyectil
   tiempoVida: 5
   sonidoImpacto: {fileID: 8300000, guid: 0af56a07f1a931f41ade9336846737f8, type: 3}
+  sonidoRomperCaja: {fileID: 8300000, guid: ac21b40bfdbb2954eaa35355ab0e42bc, type: 3}
   particulasImpacto: {fileID: 8801697381936057335, guid: 4db03c49cb444f94a82ccf15456b8e47, type: 3}
+  cristalPrefab: {fileID: 7508768510701008559, guid: 8d97c69b27d4ac3408d70078646e79b5, type: 3}
 --- !u!1 &1808105160306585178
 GameObject:
   m_ObjectHideFlags: 0
