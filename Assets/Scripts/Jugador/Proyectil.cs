@@ -8,10 +8,8 @@ public class Proyectil : MonoBehaviour
     public AudioClip sonidoRomperCaja;
 
     public GameObject particulasImpacto;
-    public GameObject cristalPrefab;
 
-    // EVITAR DOBLE COLISIÓN
-    private bool haImpactado = false;
+    public GameObject cristalPrefab;
 
     void Start()
     {
@@ -20,43 +18,29 @@ public class Proyectil : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // SI YA IMPACTÓ, NO HACER NADA
-        if (haImpactado)
-            return;
-
-        haImpactado = true;
-
         Vector3 puntoImpacto = collision.contacts[0].point;
 
         // PARTÍCULAS
         if (particulasImpacto != null)
         {
-            Instantiate(
-                particulasImpacto,
-                puntoImpacto,
-                Quaternion.identity
-            );
+            Instantiate(particulasImpacto, puntoImpacto, Quaternion.identity);
         }
 
         // SI ES CAJA
         if (collision.gameObject.CompareTag("Caja"))
         {
-            // SONIDO
+            // SONIDO CAJA
             if (sonidoRomperCaja != null)
             {
-                AudioSource.PlayClipAtPoint(
-                    sonidoRomperCaja,
-                    puntoImpacto
-                );
+                AudioSource.PlayClipAtPoint(sonidoRomperCaja, puntoImpacto);
             }
 
-            // SOLO ENTRE 1 Y 5
-            int cantidad = Random.Range(1, 4);
+            // GENERAR CRISTALES
+            int cantidad = Random.Range(1, 2);
 
             for (int i = 0; i < cantidad; i++)
             {
-                Vector3 posicion =
-                    collision.transform.position + Vector3.up;
+                Vector3 posicion = collision.transform.position + Vector3.up;
 
                 GameObject cristal = Instantiate(
                     cristalPrefab,
@@ -69,19 +53,15 @@ public class Proyectil : MonoBehaviour
                 if (rb != null)
                 {
                     Vector3 fuerza = new Vector3(
-                        Random.Range(-0.1f, 0.1f),
-                        Random.Range(0.5f, 1f),
-                        Random.Range(-0.1f, 0.1f)
+                    Random.Range(-0.5f, 0.5f),
+                    Random.Range(1f, 1.5f),
+                    Random.Range(-0.5f, 0.5f)
                     );
 
-                    rb.AddForce(
-                        fuerza,
-                        ForceMode.Impulse
-                    );
+                    rb.AddForce(fuerza, ForceMode.Impulse);
                 }
             }
 
-            // DESTRUIR CAJA
             Destroy(collision.gameObject);
         }
         else
@@ -89,14 +69,10 @@ public class Proyectil : MonoBehaviour
             // SONIDO NORMAL
             if (sonidoImpacto != null)
             {
-                AudioSource.PlayClipAtPoint(
-                    sonidoImpacto,
-                    puntoImpacto
-                );
+                AudioSource.PlayClipAtPoint(sonidoImpacto, puntoImpacto);
             }
         }
 
-        // DESTRUIR PROYECTIL
         Destroy(gameObject);
     }
 }

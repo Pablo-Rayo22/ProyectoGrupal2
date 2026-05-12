@@ -3,11 +3,22 @@ using UnityEngine;
 public class MovimientoEnemigo : MonoBehaviour
 {
 
-    public float velocidad = 5f;
-    public float fuerzaSalto = 7f;
+    private CharacterController controller;
+    private Animator animator;
+    private Transform cameraTransform;
 
-    public float gravedadExtra = 20f;
-    public float gravedadCaida = 45f;
+
+    float walkSpeed = 50f;
+    float runSpeed = 100f;
+    float rotationSpeed = 100f;
+    float jumpHeight = 1.5f;
+    float gravity = -9.81f;
+
+
+
+    private Vector3 velocity;
+    private bool isGrounded;
+    private float currentSpeed;
 
     // 🔥 DISPARO
     public GameObject proyectilPrefab;
@@ -18,79 +29,118 @@ public class MovimientoEnemigo : MonoBehaviour
     public AudioSource audioPasos;
     public AudioClip sonidoPasos;
 
-    private Rigidbody rb;
-    //private Animator animator;
-
-    private bool enSuelo;
-
-    void Awake()
+    void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        //animator = GetComponentInChildren<Animator>();
+        controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+        cameraTransform = Camera.main.transform;
+
     }
 
     void Update()
     {
-        float movX = Input.GetAxisRaw("Horizontal");
-        float movZ = Input.GetAxisRaw("Vertical");
+        //  Verificar si está en el suelo
+        isGrounded = controller.isGrounded;
 
-        Vector3 direccion = new Vector3(movX, 0, movZ).normalized;
+        //  Correr (Shift izquierdo)
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
 
-        // ROTACIÓN
-        if (direccion != Vector3.zero)
+        if (isGrounded && velocity.y < 0)
         {
-            Quaternion rotacion = Quaternion.LookRotation(direccion);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotacion, 15f * Time.deltaTime);
+            velocity.y = -2f;
         }
 
-    }
+        //  Movimiento horizontal
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
-    void FixedUpdate()
-    {
-        float movX = Input.GetAxisRaw("Horizontal");
-        float movZ = Input.GetAxisRaw("Vertical");
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
 
-        Vector3 direccion = new Vector3(movX, 0, movZ).normalized;
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
 
-        // DETECTAR SUELO
-        enSuelo = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+        Vector3 moveDirection = (camForward * z) + (camRight * x);
 
-        // DETECTAR PARED
-        bool hayPared = Physics.Raycast(transform.position, transform.forward, 0.7f);
+        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
 
-        // MOVIMIENTO
-        Vector3 velocidadFinal;
+        // Mover al personaje
+        controller.Move(moveDirection * currentSpeed * Time.deltaTime);
 
-        if (!enSuelo && hayPared)
+        
+        // Hacer que el personaje gire hacia donde se está moviendo
+        if (moveDirection.magnitude > 0.1f)
         {
-            velocidadFinal = new Vector3(0, rb.linearVelocity.y, 0);
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+        }
+                
+        //  Salto
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            animator.SetTrigger("Jump"); // Animación de salto
+        }
+
+        //  Aplicar gravedad
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+        // ACTUALIZAR ANIMACIONES
+        UpdateAnimations(moveDirection.magnitude, isRunning);
+
+        /* DISPARO de bolas de fuego
+    if (Input.GetMouseButtonDown(0))
+    {
+           //Disparar();
+    }*/
+
+        // 🔊 SONIDO DE PASOS
+
+        if (moveDirection.magnitude > 0.1f && isGrounded)
+        {
+            if (!audioPasos.isPlaying)
+            {
+                audioPasos.clip = sonidoPasos;
+                audioPasos.loop = true;
+                audioPasos.Play();
+            }
         }
         else
         {
-            velocidadFinal = new Vector3(
-                direccion.x * velocidad,
-                rb.linearVelocity.y,
-                direccion.z * velocidad
-            );
-        }
-
-        rb.linearVelocity = velocidadFinal;
-
-        // GRAVEDAD
-        if (!enSuelo)
-        {
-            if (rb.linearVelocity.y > 0)
+            if (audioPasos.isPlaying)
             {
-                rb.AddForce(Vector3.down * gravedadExtra, ForceMode.Acceleration);
-            }
-            else
-            {
-                rb.AddForce(Vector3.down * gravedadCaida, ForceMode.Acceleration);
+                audioPasos.Stop();
             }
         }
-
-        // EVITAR GIROS LOCOS
-        rb.angularVelocity = Vector3.zero;
-        rb.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
+
+    void UpdateAnimations(float moveMagnitude, bool isRunning)
+    {
+        // Parámetro para velocidad de movimiento 
+        animator.SetFloat("Speed", moveMagnitude);
+
+        // Parámetro para saber si está corriendo
+        animator.SetBool("IsRunning", isRunning && moveMagnitude > 0.1f);
+
+        // Parámetro para saber si está en el suelo
+        animator.SetBool("IsGrounded", isGrounded);
+
+        // Velocidad vertical para animaciones de caída
+        animator.SetFloat("VerticalVelocity", velocity.y);
+    }
+
+
+    
+    
+
+
+
+
+
 }
+
+
+   
