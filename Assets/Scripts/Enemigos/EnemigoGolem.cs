@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /*
@@ -10,33 +11,35 @@ NO SALTO.
 
 public class EnemigoGolem : MonoBehaviour
 {
-    private Vector3 posicionInicial;
-    public Vector3 posicionFinal;
-    public float tiempoInterpolacion;
-    private void Awake()
+    public float alcanceGolpe = 1f;
+    private bool golpe = false;
+    private void Awake ()
     {
-        posicionInicial = transform.position;
+
     }
 
-    private void Update()
+    private void Update ()
     {
-        Movimiento();
+        if (Input.GetKey(KeyCode.Q))
+        {
+            Atacar();
+        }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         DaniarJugador(collision.gameObject);
     }
 
-    //private void Atacar() {
-
-    //}
-
-    private void Movimiento()
+    private void Atacar()
     {
-        transform.position = Vector3.Lerp(posicionInicial, posicionFinal, tiempoInterpolacion);
+        if (!golpe)
+        {
+            golpe = true;
+            Destroy(gameObject);
+        }
+        
     }
-    
+
     private void DaniarJugador (GameObject collider)
     {
         if (collider.CompareTag("Player"))
@@ -44,4 +47,5 @@ public class EnemigoGolem : MonoBehaviour
             Debug.Log("Jugador tocado: " + collider.name);
         }
     }
+
 }
