@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class IAenemigo : MonoBehaviour
+public class IAEnemigo : MonoBehaviour
 {
     private float velocidad = 500f;
-    private Vector3 posicion_inicial;
-    private Vector3 posicion_final;
+    private Vector3 posicionInicial;
+    private Vector3 posicionFinal;
     public GameObject puntoA;
     public GameObject puntoB;
     private float duracion = 9f;
-    private float tiempo_transcurrido = 0f;
+    private float tiempoTranscurrido = 0f;
     bool izquierda;
 
     private Animator animator;
@@ -19,8 +19,8 @@ public class IAenemigo : MonoBehaviour
 
     void Start()
     {
-        posicion_inicial = new Vector3(puntoA.transform.position.x,puntoA.transform.position.y,puntoA.transform.position.z);
-        posicion_final = new Vector3(puntoB.transform.position.x, puntoB.transform.position.y,puntoB.transform.position.z);
+        posicionInicial = new Vector3(puntoA.transform.position.x,puntoA.transform.position.y,puntoA.transform.position.z);
+        posicionFinal = new Vector3(puntoB.transform.position.x, puntoB.transform.position.y,puntoB.transform.position.z);
         animator = GetComponent<Animator>();
     }
 

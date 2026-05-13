@@ -7,9 +7,11 @@ public class Parasitar : MonoBehaviour
     public MovimientoJugador jugador;
     public MovimientoEnemigo enemigo;
     public CamaraSeguimiento camara;
+    public PatrullaEnemigo patrulla;
 
     private bool enemigoParasitado = false;
     private Renderer[] renderers;
+    private Collider[] colliders;
     private void Awake()
     {
         enemigo.enabled = false;
@@ -38,10 +40,10 @@ public class Parasitar : MonoBehaviour
 
             OcultarPersonaje();
 
-            
-            enemigo.enabled = true; // Activamos  el control del enemigo
 
-            
+            patrulla.enabled = false; // Deshabilitamos la patrulla
+            enemigo.enabled = true; // Activamos el control del enemigo
+                        
             camara.objetivo = enemigo.transform; // Pasamos la cámara a enemigo
         }
 
@@ -54,7 +56,9 @@ public class Parasitar : MonoBehaviour
                 renderers[i].enabled = false;
             }
             
-            jugador.enabled = false;
+            jugador.GetComponent<CapsuleCollider>().enabled = false; // Desactivamos el collider del jugador
+
+        jugador.enabled = false;
             jugador.audioPasos.Stop();
             jugador.audioPasos.enabled = false;
             jugador.GetComponentInChildren<AudioSource>().Stop();
@@ -74,7 +78,6 @@ public class Parasitar : MonoBehaviour
                 renderers[i].enabled = true;
             }
 
-            
             jugador.enabled = true; //Devolvemos el control al jugador
             camara.objetivo = jugador.transform; //Pasamos la cámara al jugador
             jugador.audioPasos.enabled = true;

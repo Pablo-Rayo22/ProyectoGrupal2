@@ -6,6 +6,7 @@ public class PatrullaEnemigo : MonoBehaviour
     private bool corutinaActiva = false;
     private Vector3 posicionInicial;
     private Quaternion rotacionInicial;
+    private Coroutine corutinaPatrullar;
     public Transform objetivo;
     public Quaternion rotacionFinal;
     public float tiempoInterpolacion = 0f;
@@ -21,9 +22,14 @@ public class PatrullaEnemigo : MonoBehaviour
         if (!corutinaActiva)
         {
             corutinaActiva = true;
-            StartCoroutine(Patrullar(posicionInicial, objetivo, tiempoInterpolacion));
+            corutinaPatrullar = StartCoroutine(Patrullar(posicionInicial, objetivo, tiempoInterpolacion));
             //StartCoroutine(Rotar(rotacionInicial, rotacionFinal, tiempoInterpolacion));
         }
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(corutinaPatrullar);
     }
 
     private IEnumerator Patrullar(Vector3 posicionInicial, Transform objetivo, float tiempoInterpolacion)
@@ -55,6 +61,7 @@ public class PatrullaEnemigo : MonoBehaviour
 
     private void cambiarObjetivo()
     {
+        // 
         objetivo.position = posicionInicial;
         posicionInicial = transform.position;
     }

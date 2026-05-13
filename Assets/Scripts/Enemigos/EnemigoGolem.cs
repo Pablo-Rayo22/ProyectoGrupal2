@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VectorGraphics;
 using UnityEngine;
 
 /*
@@ -12,10 +13,11 @@ NO SALTO.
 public class EnemigoGolem : MonoBehaviour
 {
     public float alcanceGolpe = 1.5f;
-    private bool golpe = false;
+    //private CharacterController controller;
+
     private void Awake ()
     {
-
+        //controller = GetComponent<CharacterController>();
     }
 
     private void Update ()
@@ -25,28 +27,16 @@ public class EnemigoGolem : MonoBehaviour
             Atacar();
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        DaniarJugador(collision.gameObject);
-    }
 
     private void Atacar()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, alcanceGolpe);
         for (int i = 0; i < colliders.Length; i++)
         {
-            Destroy(colliders[i].gameObject);
-        }
-        
-        
+            if (colliders[i].gameObject.CompareTag("Caja"))
+            {
+                    Destroy(colliders[i].gameObject);
+            }
+        }        
     }
-
-    private void DaniarJugador (GameObject collider)
-    {
-        if (collider.CompareTag("Player"))
-        {
-            Debug.Log("Jugador tocado: " + collider.name);
-        }
-    }
-
 }

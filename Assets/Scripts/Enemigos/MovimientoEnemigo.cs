@@ -3,22 +3,23 @@ using UnityEngine;
 public class MovimientoEnemigo : MonoBehaviour
 {
 
+
     private CharacterController controller;
-    private Animator animator;
+    //private //abc //abc;
     private Transform cameraTransform;
 
 
-    float walkSpeed = 50f;
-    float runSpeed = 100f;
-    float rotationSpeed = 100f;
-    float jumpHeight = 1.5f;
-    float gravity = -9.81f;
+    public float velocidadCaminando = 5;
+    public float velocidadCorriendo = 8f;
+    public float velocidadRotacion = 100f;
+    public float alturaSalto = 1.5f;
+    float gravedad = -9.81f;
 
 
 
-    private Vector3 velocity;
-    private bool isGrounded;
-    private float currentSpeed;
+    private Vector3 velocidad;
+    private bool enSuelo;
+    private float velocidadActual;
 
     // 🔥 DISPARO
     public GameObject proyectilPrefab;
@@ -29,10 +30,10 @@ public class MovimientoEnemigo : MonoBehaviour
     public AudioSource audioPasos;
     public AudioClip sonidoPasos;
 
-    void Start()
+    void Awake()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+       // //abc = GetComponent<//abc>();
         cameraTransform = Camera.main.transform;
 
     }
@@ -40,14 +41,14 @@ public class MovimientoEnemigo : MonoBehaviour
     void Update()
     {
         //  Verificar si está en el suelo
-        isGrounded = controller.isGrounded;
+        enSuelo = controller.isGrounded;
 
         //  Correr (Shift izquierdo)
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        bool estaCorriendo = Input.GetKey(KeyCode.LeftShift);
 
-        if (isGrounded && velocity.y < 0)
+        if (enSuelo && velocidad.y < 0)
         {
-            velocity.y = -2f;
+            velocidad.y = -2f;
         }
 
         //  Movimiento horizontal
@@ -64,32 +65,32 @@ public class MovimientoEnemigo : MonoBehaviour
 
         Vector3 moveDirection = (camForward * z) + (camRight * x);
 
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? velocidadCorriendo : velocidadCaminando;
 
         // Mover al personaje
         controller.Move(moveDirection * currentSpeed * Time.deltaTime);
 
         
         // Hacer que el personaje gire hacia donde se está moviendo
-        if (moveDirection.magnitude > 0.1f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
-        }
+        //if (moveDirection.magnitude > 0.1f)
+        //{
+        //    Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+        //}
                 
         //  Salto
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && enSuelo)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            animator.SetTrigger("Jump"); // Animación de salto
+            velocidad.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
+            //abc.SetTrigger("Jump"); // Animación de salto
         }
 
         //  Aplicar gravedad
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        velocidad.y += gravedad * Time.deltaTime;
+        controller.Move(velocidad * Time.deltaTime);
 
         // ACTUALIZAR ANIMACIONES
-        UpdateAnimations(moveDirection.magnitude, isRunning);
+        UpdateAnimations(moveDirection.magnitude, estaCorriendo);
 
         /* DISPARO de bolas de fuego
     if (Input.GetMouseButtonDown(0))
@@ -99,7 +100,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
         // 🔊 SONIDO DE PASOS
 
-        if (moveDirection.magnitude > 0.1f && isGrounded)
+        if (moveDirection.magnitude > 0.1f && enSuelo)
         {
             if (!audioPasos.isPlaying)
             {
@@ -120,27 +121,15 @@ public class MovimientoEnemigo : MonoBehaviour
     void UpdateAnimations(float moveMagnitude, bool isRunning)
     {
         // Parámetro para velocidad de movimiento 
-        animator.SetFloat("Speed", moveMagnitude);
+        //abc.SetFloat("Speed", moveMagnitude);
 
         // Parámetro para saber si está corriendo
-        animator.SetBool("IsRunning", isRunning && moveMagnitude > 0.1f);
+        //abc.SetBool("IsRunning", isRunning && moveMagnitude > 0.1f);
 
         // Parámetro para saber si está en el suelo
-        animator.SetBool("IsGrounded", isGrounded);
+        //abc.SetBool("IsGrounded", isGrounded);
 
         // Velocidad vertical para animaciones de caída
-        animator.SetFloat("VerticalVelocity", velocity.y);
+        //abc.SetFloat("VerticalVelocity", velocity.y);
     }
-
-
-    
-    
-
-
-
-
-
 }
-
-
-   
