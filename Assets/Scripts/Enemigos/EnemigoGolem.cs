@@ -11,7 +11,7 @@ NO SALTO.
 
 public class EnemigoGolem : MonoBehaviour
 {
-    public float alcanceGolpe = 1f;
+    public float alcanceGolpe = 1.5f;
     private bool golpe = false;
     private void Awake ()
     {
@@ -32,11 +32,12 @@ public class EnemigoGolem : MonoBehaviour
 
     private void Atacar()
     {
-        if (!golpe)
+        Collider[] colliders = Physics.OverlapSphere(transform.position, alcanceGolpe);
+        for (int i = 0; i < colliders.Length; i++)
         {
-            golpe = true;
-            Destroy(gameObject);
+            Destroy(colliders[i].gameObject);
         }
+        
         
     }
 

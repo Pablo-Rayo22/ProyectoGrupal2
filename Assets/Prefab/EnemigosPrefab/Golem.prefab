@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 5785009066018762160}
   - component: {fileID: 7487129433589506581}
   - component: {fileID: 4612626946145752799}
-  - component: {fileID: 8262103932274451179}
   - component: {fileID: 2834912194107614240}
   - component: {fileID: 4319199270641904856}
   - component: {fileID: -964363352936435327}
   - component: {fileID: -5170305194906795515}
+  - component: {fileID: 8476633121209499462}
+  - component: {fileID: 8963994108908711403}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Untagged
@@ -95,29 +96,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8262103932274451179
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6558274276137776906}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.009564733
-  m_Height: 0.0069724247
-  m_Direction: 1
-  m_Center: {x: 0.000021690044, y: 0.000011300092, z: -0.00001585973}
 --- !u!114 &2834912194107614240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,14 +132,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6558274276137776906}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16dc0a9801bd0df439b0c64192e811b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatrullaEnemigo
   objetivo: {fileID: 0}
   rotacionFinal: {x: 0, y: 0, z: 0, w: 0}
-  tiempoInterpolacion: 0
+  tiempoInterpolacion: 3
 --- !u!54 &-5170305194906795515
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -189,3 +167,45 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8476633121209499462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558274276137776906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910d34076beb29d4ca5320d04cf534da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigo
+  velocidad: 5
+  fuerzaSalto: 7
+  gravedadExtra: 20
+  gravedadCaida: 45
+  proyectilPrefab: {fileID: 0}
+  puntoDisparo: {fileID: 0}
+  fuerzaDisparo: 15
+  audioPasos: {fileID: 0}
+  sonidoPasos: {fileID: 0}
+--- !u!135 &8963994108908711403
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558274276137776906}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.0095647285
+  m_Center: {x: 0.000021690035, y: 0.000011300085, z: -0.000015859723}

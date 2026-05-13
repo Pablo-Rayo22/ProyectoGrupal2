@@ -20,9 +20,21 @@ public class Proyectil : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        bool flowControl = NewMethod(collision);
+        if (!flowControl)
+        {
+            return;
+        }
+
+        // DESTRUIR PROYECTIL
+        Destroy(gameObject);
+    }
+
+    private bool NewMethod(Collision collision)
+    {
         // SI YA IMPACTÓ, NO HACER NADA
         if (haImpactado)
-            return;
+            return false;
 
         haImpactado = true;
 
@@ -96,7 +108,6 @@ public class Proyectil : MonoBehaviour
             }
         }
 
-        // DESTRUIR PROYECTIL
-        Destroy(gameObject);
+        return true;
     }
 }
