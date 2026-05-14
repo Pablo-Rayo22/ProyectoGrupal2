@@ -6,7 +6,8 @@ public class Parasitar : MonoBehaviour
     public GameObject proyectil;
     public MovimientoJugador jugador;
     public MovimientoEnemigo enemigo;
-    public IAenemigo iaenemigo;
+    //public IAEnemigo iaEnemigo;
+    public PatrullaEnemigo patrulla;
     public CamaraSeguimiento camara;
 
     private bool enemigoParasitado = false;
@@ -14,7 +15,6 @@ public class Parasitar : MonoBehaviour
     private void Awake()
     {
         enemigo.enabled = false;
-        
     }
 
     private void Update()
@@ -41,21 +41,25 @@ public class Parasitar : MonoBehaviour
 
             
             enemigo.enabled = true; // Activamos  el control del enemigo
-            iaenemigo.enabled = false; //desactivamos su IA
+            //iaEnemigo.enabled = false; // Desactivamos su IA
+            patrulla.enabled = false; // Desactivamos su patrulla
 
-            
-            camara.objetivo = enemigo.transform; // Pasamos la cámara a enemigo
+
+
+            camara.objetivo = enemigo.transform ; // Pasamos la cámara a enemigo
         }
 
     }
         private void OcultarPersonaje() {
-        
+            
+            jugador.GetComponent<Rigidbody>().isKinematic = true; 
+            jugador.GetComponent<CapsuleCollider>().enabled = false; //Desactivamos el collider
             renderers = jugador.GetComponentsInChildren<Renderer>();
             for (int i = 0; i<renderers.Length; i++) {
                 //Desactiva el renderizado del jugador y sus componentes hijos
                 renderers[i].enabled = false;
             }
-            
+
             jugador.enabled = false;
             jugador.audioPasos.Stop();
             jugador.audioPasos.enabled = false;
@@ -71,14 +75,16 @@ public class Parasitar : MonoBehaviour
 
             jugador.transform.position = new Vector3(enemigo.transform.position.x, transform.position.y, transform.position.z);
 
-            renderers = jugador.GetComponentsInChildren<Renderer>();
+            jugador.GetComponent<Rigidbody>().isKinematic = false;
+            jugador.GetComponent<CapsuleCollider>().enabled = true; //Activamos el collider
+
+        renderers = jugador.GetComponentsInChildren<Renderer>();
 
 
             for (int i = 1; i < renderers.Length; i++)
             {
                 renderers[i].enabled = true;
             }
-
             
             jugador.enabled = true; //Devolvemos el control al jugador
             camara.objetivo = jugador.transform; //Pasamos la cámara al jugador
