@@ -6,8 +6,7 @@ public class Parasitar : MonoBehaviour
     public GameObject proyectil;
     public MovimientoJugador jugador;
     public MovimientoEnemigo enemigo;
-    public IAEnemigo IAEnemigo;
-    public PatrullaEnemigo patrulla;
+    public IAenemigo iaenemigo;
     public CamaraSeguimiento camara;
 
     private bool enemigoParasitado = false;
@@ -42,9 +41,7 @@ public class Parasitar : MonoBehaviour
 
             
             enemigo.enabled = true; // Activamos  el control del enemigo
-            IAEnemigo.enabled = false; //desactivamos su IA
-            patrulla.enabled = false; //Desactivamos su patrulla
-            
+            iaenemigo.enabled = false; //desactivamos su IA
 
             
             camara.objetivo = enemigo.transform; // Pasamos la cámara a enemigo
@@ -58,9 +55,7 @@ public class Parasitar : MonoBehaviour
                 //Desactiva el renderizado del jugador y sus componentes hijos
                 renderers[i].enabled = false;
             }
-            jugador.GetComponent<Rigidbody>().isKinematic = true;
-            jugador.GetComponent<CapsuleCollider>().enabled = false; // Desactiva el collider del jugador
-
+            
             jugador.enabled = false;
             jugador.audioPasos.Stop();
             jugador.audioPasos.enabled = false;
@@ -74,7 +69,7 @@ public class Parasitar : MonoBehaviour
                 Destroy(enemigo.gameObject);
             }
 
-            jugador.transform.position = enemigo.transform.position;
+            jugador.transform.position = new Vector3(enemigo.transform.position.x, transform.position.y, transform.position.z);
 
             renderers = jugador.GetComponentsInChildren<Renderer>();
 
@@ -83,9 +78,8 @@ public class Parasitar : MonoBehaviour
             {
                 renderers[i].enabled = true;
             }
-            jugador.GetComponent<Rigidbody>().isKinematic = false;
-            jugador.GetComponent<CapsuleCollider>().enabled = true; // Activa el collider del jugador
 
+            
             jugador.enabled = true; //Devolvemos el control al jugador
             camara.objetivo = jugador.transform; //Pasamos la cámara al jugador
             jugador.audioPasos.enabled = true;
