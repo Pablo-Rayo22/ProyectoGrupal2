@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Parasitar : MonoBehaviour
 {
-    public GameObject proyectil;
-    public MovimientoJugador jugador;
-    public MovimientoEnemigo enemigo;
-    //public IAEnemigo iaEnemigo;
-    public PatrullaEnemigo patrulla;
-    public CamaraSeguimiento camara;
+    [SerializeField] private GameObject proyectil;
+    [SerializeField] private MovimientoJugador jugador;
+    [SerializeField] private MovimientoEnemigo enemigo;
+    //[SerializeField] private IAEnemigo iaEnemigo;
+    [SerializeField] private PatrullaEnemigo patrulla;
+    [SerializeField] private CamaraSeguimiento camara;
 
     private bool enemigoParasitado = false;
     private Renderer[] renderers;

@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +26,7 @@ public class IAEnemigo : MonoBehaviour
 
     void Update()
     {
-        animator.SetFloat("Speed", velocidad);
+        //animator.SetFloat("Speed", velocidad);
 
         /*if (transform.position == posicion_final || transform.position == posicion_inicial) tiempo_transcurrido = 0f;
         if (transform.position == posicion_final) izquierda = false;

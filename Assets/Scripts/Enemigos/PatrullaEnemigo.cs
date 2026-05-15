@@ -6,15 +6,15 @@ public class PatrullaEnemigo : MonoBehaviour
     private bool corutinaActiva = false;
     private Vector3 posicionInicial;
     private Quaternion rotacionInicial;
-    private Coroutine corutinaPatrullar;
+    private float segundos;
     public Transform objetivo;
     public Quaternion rotacionFinal;
     public float tiempoInterpolacion = 0f;
+    public float tiempoRotacion = 1f;
 
     private void Awake()
     {
         posicionInicial = transform.position;
-        rotacionInicial = transform.rotation;
     }
 
     private void Update()
@@ -22,17 +22,26 @@ public class PatrullaEnemigo : MonoBehaviour
         if (!corutinaActiva)
         {
             corutinaActiva = true;
-            corutinaPatrullar = StartCoroutine(Patrullar(posicionInicial, objetivo, tiempoInterpolacion));
             //StartCoroutine(Rotar(rotacionInicial, rotacionFinal, tiempoInterpolacion));
+            //StartCoroutine(Patrullar(posicionInicial, objetivo, tiempoInterpolacion));
+            StartCoroutine(Rotar());
         }
     }
 
     private void OnDisable()
     {
-        StopCoroutine(corutinaPatrullar);
+        StopAllCoroutines();
     }
 
-    private IEnumerator Patrullar(Vector3 posicionInicial, Transform objetivo, float tiempoInterpolacion)
+    //private IEnumerator SecuenciaPatrulla()
+    //{
+    //    yield return StartCoroutine(Rotar());
+    //    yield return StartCoroutine(Patrullar());
+    //    cambiarObjetivo();
+    //    corutinaActiva = false;
+    //}
+
+    private IEnumerator Patrullar()
     {
         float tiempoTranscurrido = 0f;
         while (tiempoTranscurrido < tiempoInterpolacion)
@@ -43,21 +52,43 @@ public class PatrullaEnemigo : MonoBehaviour
         }
         objetivo.position = transform.position;
         cambiarObjetivo();
+        //corutinaActiva = false;
+    }
+    private IEnumerator Rotar()
+    {
+        Vector3 direccion = (objetivo.position - transform.position).normalized;
+        float rotacionY = cambiarRotacionY();
+
+        rotacionInicial = transform.rotation;
+
+        rotacionFinal = Quaternion.Euler(270f, rotacionY, 0f);
+        float tiempoTranscurrido = 0f;
+        //segundos = 2f; 
+        while (tiempoTranscurrido < tiempoRotacion)
+        {
+            transform.rotation = Quaternion.Lerp(rotacionInicial, rotacionFinal, tiempoTranscurrido / tiempoRotacion);
+            tiempoTranscurrido += Time.deltaTime;
+            yield return null; // Para detener la corrutina en el siguiente frame
+        }
+        transform.rotation = rotacionFinal;
+        yield return StartCoroutine(Patrullar());
+        //cambiarRotacion();
         corutinaActiva = false;
     }
-    //private IEnumerator Rotar(Quaternion rotacionInicial, Quaternion rotacionFinal, float tiempoInterpolacion)
-    //{
-    //    float tiempoTranscurrido = 0f;
-    //    while (tiempoTranscurrido < tiempoInterpolacion)
-    //    {
-    //        transform.rotation = Quaternion.Lerp(rotacionInicial, rotacionFinal, tiempoTranscurrido / tiempoInterpolacion);
-    //        tiempoTranscurrido += Time.deltaTime;
-    //        yield return null; // Para detener la corrutina en el siguiente frame
-    //    }
-    //    rotacionFinal = transform.rotation;
-    //    cambiarRotacion();
-    //    corutinaActiva = false;
-    //}
+
+    private float cambiarRotacionY()
+    {
+        float rotacionDerecha = 90f;
+        float rotacionIzquierda = -90f;
+        if (objetivo.position.x > transform.position.x)
+        {
+            return rotacionDerecha;
+        }
+        else
+        {
+            return rotacionIzquierda;
+        }
+    }
 
     private void cambiarObjetivo()
     {
@@ -66,9 +97,11 @@ public class PatrullaEnemigo : MonoBehaviour
         posicionInicial = transform.position;
     }
 
-    //private void cambiarRotacion ()
+    //private void cambiarRotacion()
     //{
-    //    rotacionFinal = rotacionInicial;
-    //    rotacionInicial = transform.rotation;
+    //    //rotacionFinal = transform.rotation;
+
+    //    //rotacionFinal = rotacionInicial;
+    //    //rotacionInicial = transform.rotation;
     //}
 }
