@@ -50,6 +50,7 @@ public class PatrullaEnemigo : MonoBehaviour
         Quaternion rotacionInicial = transform.rotation;
         float rotacionY = cambiarRotacionY();
         float tiempoTranscurrido = 0f;
+        rotacionFinal = Quaternion.Euler(270f, rotacionY, 0f);
         while (tiempoTranscurrido < tiempoRotacion)
         {
             transform.rotation = Quaternion.Lerp(rotacionInicial, rotacionFinal, tiempoTranscurrido / tiempoInterpolacion);
