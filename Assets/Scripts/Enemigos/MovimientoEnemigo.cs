@@ -6,7 +6,7 @@ public class MovimientoEnemigo : MonoBehaviour
     //private Animator animator;
     private Transform cameraTransform;
 
-    
+
     public float velocidadCaminando = 5f;
     public float velocidadCorriendo = 8f;
     public float velocidadRotacion = 100f;
@@ -17,19 +17,10 @@ public class MovimientoEnemigo : MonoBehaviour
     private bool enSuelo;
     private float velocidadActual;
 
-    // 🔥 DISPARO
-    public GameObject proyectilPrefab;
-    public Transform puntoDisparo;
-    public float fuerzaDisparo = 15f;
-
-    // 🔊 SONIDO PASOS
-    public AudioSource audioPasos;
-    public AudioClip sonidoPasos;
-
     void Awake()
     {
         controller = GetComponent<CharacterController>();
-       // animator = GetComponent<Animator>();
+        // animator = GetComponent<Animator>();
         cameraTransform = Camera.main.transform;
 
     }
@@ -93,25 +84,6 @@ public class MovimientoEnemigo : MonoBehaviour
     {
            //Disparar();
     }*/
-
-        // 🔊 SONIDO DE PASOS
-
-        //if (moverDireccion.magnitude > 0.1f && enSuelo)
-        //{
-        //    if (!audioPasos.isPlaying)
-        //    {
-        //        audioPasos.clip = sonidoPasos;
-        //        audioPasos.loop = true;
-        //        audioPasos.Play();
-        //    }
-        //}
-        //else
-        //{
-        //    if (audioPasos.isPlaying)
-        //    {
-        //        audioPasos.Stop();
-        //    }
-        //}
     }
 
     void ActualizarAnimaciones(float moverMagnitud, bool estaCorriendo)

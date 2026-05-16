@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8189605551086765516}
-  - component: {fileID: 1919517348424649341}
-  - component: {fileID: 1076349530717788715}
+  - component: {fileID: 72587509075249255}
+  - component: {fileID: 5671591383525713281}
   m_Layer: 0
   m_Name: EnemigoGolem
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6683894107116111613}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1919517348424649341
+--- !u!114 &72587509075249255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,14 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigo
   velocidadCaminando: 5
   velocidadCorriendo: 8
-  velocidadRotacion: 10
+  velocidadRotacion: 5
   alturaSalto: 1.5
-  proyectilPrefab: {fileID: 1268844505366026008, guid: 7b05fdf0b47a756478f9e1c6be997bdc, type: 3}
-  puntoDisparo: {fileID: 8189605551086765516}
-  fuerzaDisparo: 15
-  audioPasos: {fileID: 0}
-  sonidoPasos: {fileID: 8300000, guid: 5d19ea2590ebc354c94cd3a781caf215, type: 3}
---- !u!143 &1076349530717788715
+--- !u!143 &5671591383525713281
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Parasitar
   proyectil: {fileID: 1268844505366026008, guid: 7b05fdf0b47a756478f9e1c6be997bdc, type: 3}
   jugador: {fileID: 0}
-  enemigo: {fileID: 1919517348424649341}
+  enemigo: {fileID: 72587509075249255}
   patrulla: {fileID: 495825042169421642}
   camara: {fileID: 0}
 --- !u!114 &5623952598409006066

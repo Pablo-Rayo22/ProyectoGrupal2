@@ -22,7 +22,6 @@ public class PatrullaEnemigo : MonoBehaviour
         {
             corutinaActiva = true;
             StartCoroutine(Rotar());
-            //StartCoroutine(Rotar(rotacionInicial, rotacionFinal, tiempoInterpolacion));
         }
     }
 
@@ -53,7 +52,7 @@ public class PatrullaEnemigo : MonoBehaviour
         rotacionFinal = Quaternion.Euler(270f, rotacionY, 0f);
         while (tiempoTranscurrido < tiempoRotacion)
         {
-            transform.rotation = Quaternion.Lerp(rotacionInicial, rotacionFinal, tiempoTranscurrido / tiempoInterpolacion);
+            transform.rotation = Quaternion.Lerp(rotacionInicial, rotacionFinal, tiempoTranscurrido / tiempoRotacion);
             tiempoTranscurrido += Time.deltaTime;
             yield return null; // Para detener la corrutina en el siguiente frame
         }

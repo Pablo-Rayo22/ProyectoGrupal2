@@ -13,6 +13,4 @@ public class Danio : MonoBehaviour
             Debug.Log("Jugador tocado: " + collider.name);
         }
     }
-
-
 }

@@ -15,6 +15,7 @@ public class Parasitar : MonoBehaviour
     private void Awake()
     {
         enemigo.enabled = false;
+        enemigo.GetComponent<CharacterController>().enabled = false;
     }
 
     private void Update()
@@ -39,7 +40,7 @@ public class Parasitar : MonoBehaviour
 
             OcultarPersonaje();
 
-            
+            enemigo.GetComponent<CharacterController>().enabled = true;
             enemigo.enabled = true; // Activamos  el control del enemigo
             //iaEnemigo.enabled = false; // Desactivamos su IA
             patrulla.enabled = false; // Desactivamos su patrulla
