@@ -32,7 +32,6 @@ public class PatrullaEnemigo : MonoBehaviour
 
     private IEnumerator Patrullar()
     {
-        Debug.Log("patrulla");
         float tiempoTranscurrido = 0f;
         while (tiempoTranscurrido < tiempoInterpolacion)
         {
@@ -64,10 +63,10 @@ public class PatrullaEnemigo : MonoBehaviour
 
     private void cambiarObjetivo()
     {
-        // 
+         
         objetivo.position = posicionInicial;
         posicionInicial = transform.position;
-        Debug.Log(posicionInicial.sqrMagnitude);
+        
     }
 
     private float cambiarRotacionY()

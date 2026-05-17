@@ -8,7 +8,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
 
     public float velocidadCaminando = 5f;
-    public float velocidadCorriendo = 8f;
+    public float velocidadCorriendo = 10f;
     public float velocidadRotacion = 100f;
     public float alturaSalto = 1.5f;
 
@@ -66,11 +66,11 @@ public class MovimientoEnemigo : MonoBehaviour
         }
 
         //  Salto
-        if (Input.GetButtonDown("Jump") && enSuelo)
+       /* if (Input.GetButtonDown("Jump") && enSuelo)
         {
             velocidad.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
             //animator.SetTrigger("Jump"); // Animación de salto
-        }
+        }*/
 
         //  Aplicar gravedad
         velocidad.y += gravedad * Time.deltaTime;
