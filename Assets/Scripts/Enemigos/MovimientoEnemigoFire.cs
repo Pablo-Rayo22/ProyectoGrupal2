@@ -1,0 +1,102 @@
+using UnityEngine;
+
+public class MovimientoEnemigoFire : MonoBehaviour
+{
+    private CharacterController controller;
+    private Animator animator;
+    private Transform cameraTransform;
+
+
+    public float velocidadCaminando = 5f;
+    public float velocidadCorriendo = 10f;
+    public float velocidadRotacion = 100f;
+    public float alturaSalto = 1.5f;
+
+    private float gravedad = -9.81f;
+    private Vector3 velocidad;
+    private bool enSuelo;
+    private float velocidadActual;
+
+    void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+        cameraTransform = Camera.main.transform;
+
+    }
+
+    void Update()
+    {
+        //  Verificar si está en el suelo
+        enSuelo = controller.isGrounded;
+
+        //  Correr (Shift izquierdo)
+        bool estaCorriendo = Input.GetKey(KeyCode.LeftShift);
+
+        if (enSuelo && velocidad.y < 0)
+        {
+            velocidad.y = -2f;
+        }
+
+        //  Movimiento horizontal
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 moverDireccion = (camForward * z) + (camRight * x);
+
+        velocidadActual = Input.GetKey(KeyCode.LeftShift) ? velocidadCorriendo : velocidadCaminando;
+
+        // Mover al personaje
+        controller.Move(moverDireccion * velocidadActual * Time.deltaTime);
+
+
+        // Hacer que el personaje gire hacia donde se está moviendo
+        if (moverDireccion.magnitude > 0.1f)
+        {
+            Quaternion rotacionObjetivo = Quaternion.LookRotation(moverDireccion);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, 10f * Time.deltaTime);
+        }
+
+        /*  Salto
+        if (Input.GetButtonDown("Jump") && enSuelo)
+        {
+            velocidad.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
+            //animator.SetTrigger("Jump"); // Animación de salto
+        }*/
+
+        //  Aplicar gravedad
+        velocidad.y += gravedad * Time.deltaTime;
+        controller.Move(velocidad * Time.deltaTime);
+
+        // ACTUALIZAR ANIMACIONES
+        ActualizarAnimacionesFire(moverDireccion.magnitude, estaCorriendo);
+
+        //DISPARO de bolas de fuego
+        if (Input.GetMouseButtonDown(0))
+        {
+           
+        }
+    }
+
+    void ActualizarAnimacionesFire(float moverMagnitud, bool estaCorriendo)
+    {
+        // Parámetro para velocidad de movimiento 
+         animator.SetFloat("Speed", moverMagnitud);
+
+        //Parámetro para saber si está corriendo
+        animator.SetBool("IsRunning", estaCorriendo && moverMagnitud > 0.1f);
+
+        //Parámetro para saber si está en el suelo
+        animator.SetBool("IsGrounded", enSuelo);
+
+        
+    }
+}
