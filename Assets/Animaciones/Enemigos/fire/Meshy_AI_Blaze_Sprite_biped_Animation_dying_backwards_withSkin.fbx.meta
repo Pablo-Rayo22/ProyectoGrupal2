@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1589203dd5b7d54b937bb6a9c5c8a7e
+guid: 0fdfe69a8c537a74681d92a69603410b
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Armature|Monster_Walk|baselayer
-      takeName: Armature|Armature|Monster_Walk|baselayer
-      internalID: -9174157984535241348
+      name: Armature|Armature|dying_backwards|baselayer
+      takeName: Armature|Armature|dying_backwards|baselayer
+      internalID: 8704948950737222640
       firstFrame: 0
-      lastFrame: 123
+      lastFrame: 67
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
