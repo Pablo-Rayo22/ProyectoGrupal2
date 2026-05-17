@@ -6,18 +6,18 @@ public class Parasitar : MonoBehaviour
     [SerializeField] private GameObject proyectil;
     [SerializeField] private MovimientoJugador jugador;
     [SerializeField] private MovimientoEnemigo enemigo;
-    //[SerializeField] private IAEnemigo iaEnemigo;
+    [SerializeField] private IAenemigo iaEnemigo;
     [SerializeField] private PatrullaEnemigo patrulla;
     [SerializeField] private CamaraSeguimiento camara;
 
     private bool enemigoParasitado = false;
     private Renderer[] renderers;
-    private void Awake()
+    private void Start()
     {
         enemigo.enabled = false;
-        enemigo.GetComponent<CharacterController>().enabled = false;
+        //enemigo.GetComponent<CharacterController>().enabled = false;
     }
-
+    
     private void Update()
     {
         if (enemigoParasitado && Input.GetKey(KeyCode.Escape))
@@ -29,6 +29,7 @@ public class Parasitar : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("choca con algo");
         Infectar(collision.gameObject);
     }
 
@@ -40,9 +41,9 @@ public class Parasitar : MonoBehaviour
 
             OcultarPersonaje();
 
-            enemigo.GetComponent<CharacterController>().enabled = true;
+            //enemigo.GetComponent<CharacterController>().enabled = true;
             enemigo.enabled = true; // Activamos  el control del enemigo
-            //iaEnemigo.enabled = false; // Desactivamos su IA
+            iaEnemigo.enabled = false; // Desactivamos su IA
             patrulla.enabled = false; // Desactivamos su patrulla
 
 
@@ -79,7 +80,7 @@ public class Parasitar : MonoBehaviour
             jugador.GetComponent<Rigidbody>().isKinematic = false;
             jugador.GetComponent<CapsuleCollider>().enabled = true; //Activamos el collider
 
-        renderers = jugador.GetComponentsInChildren<Renderer>();
+            renderers = jugador.GetComponentsInChildren<Renderer>();
 
 
             for (int i = 1; i < renderers.Length; i++)

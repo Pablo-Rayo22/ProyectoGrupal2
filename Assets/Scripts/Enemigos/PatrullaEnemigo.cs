@@ -11,7 +11,7 @@ public class PatrullaEnemigo : MonoBehaviour
     public float tiempoInterpolacion = 0f;
     public float tiempoRotacion = 0f;
 
-    private void Awake()
+    private void Start()
     {
         posicionInicial = transform.position;
     }
@@ -32,6 +32,7 @@ public class PatrullaEnemigo : MonoBehaviour
 
     private IEnumerator Patrullar()
     {
+        Debug.Log("patrulla");
         float tiempoTranscurrido = 0f;
         while (tiempoTranscurrido < tiempoInterpolacion)
         {
@@ -49,7 +50,7 @@ public class PatrullaEnemigo : MonoBehaviour
         Quaternion rotacionInicial = transform.rotation;
         float rotacionY = cambiarRotacionY();
         float tiempoTranscurrido = 0f;
-        rotacionFinal = Quaternion.Euler(270f, rotacionY, 0f);
+        rotacionFinal = Quaternion.Euler(0f, rotacionY, 0f);
         while (tiempoTranscurrido < tiempoRotacion)
         {
             transform.rotation = Quaternion.Lerp(rotacionInicial, rotacionFinal, tiempoTranscurrido / tiempoRotacion);
@@ -66,6 +67,7 @@ public class PatrullaEnemigo : MonoBehaviour
         // 
         objetivo.position = posicionInicial;
         posicionInicial = transform.position;
+        Debug.Log(posicionInicial.sqrMagnitude);
     }
 
     private float cambiarRotacionY()
