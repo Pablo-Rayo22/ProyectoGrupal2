@@ -33,7 +33,7 @@ public class IAenemigo : MonoBehaviour
 
     void Update()
     {
-        animator.SetFloat("velocidad", velocidad);
+        
 
         float dist = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position));
 
@@ -87,5 +87,6 @@ public class IAenemigo : MonoBehaviour
                 transform.position = Vector3.Lerp(posicion_final, posicion_inicial, completado);
             }
         }
+        animator.SetFloat("Speed", velocidad);
     }
 }
