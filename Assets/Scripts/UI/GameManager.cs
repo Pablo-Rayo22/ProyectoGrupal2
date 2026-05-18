@@ -19,16 +19,57 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        instancia = this;
+        if (instancia == null)
+        {
+            instancia = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    void Update()
+    {
+        if (textoVidas == null)
+        {
+            GameObject obj = GameObject.Find("TextoVidas");
+
+            if (obj != null)
+                textoVidas = obj.GetComponent<TextMeshProUGUI>();
+        }
+
+        if (textoDiamantes == null)
+        {
+            GameObject obj = GameObject.Find("TextoDiamantes");
+
+            if (obj != null)
+                textoDiamantes = obj.GetComponent<TextMeshProUGUI>();
+        }
+
+        if (textoCajas == null)
+        {
+            GameObject obj = GameObject.Find("TextoCajas");
+
+            if (obj != null)
+                textoCajas = obj.GetComponent<TextMeshProUGUI>();
+        }
 
         ActualizarUI();
     }
 
-    void ActualizarUI()
+    public void ActualizarUI()
     {
-        textoVidas.text = "x" + vidas;
-        textoDiamantes.text = "x" + diamantes;
-        textoCajas.text = "x" + cajasRotas;
+        if (textoVidas != null)
+            textoVidas.text = "x" + vidas;
+
+        if (textoDiamantes != null)
+            textoDiamantes.text = "x" + diamantes;
+
+        if (textoCajas != null)
+            textoCajas.text = "x" + cajasRotas;
     }
 
     public void AñadirDiamante()
