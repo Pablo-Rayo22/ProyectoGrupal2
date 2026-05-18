@@ -87,6 +87,6 @@ public class IAenemigo : MonoBehaviour
                 transform.position = Vector3.Lerp(posicion_final, posicion_inicial, completado);
             }
         }
-        animator.SetFloat("Speed", velocidad);
+        animator.SetFloat("Velocidad", velocidad);
     }
 }

@@ -1,28 +1,38 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class Parasitar : MonoBehaviour
 {
+    public float tiempoEspera = 3f;
+
     [SerializeField] private GameObject proyectil;
     [SerializeField] private MovimientoJugador jugador;
-    [SerializeField] private MovimientoEnemigo enemigo;
-    [SerializeField] private MovimientoEnemigoFire enemigo_fire;
+    [SerializeField] private MovimientoEnemigoGolem enemigoGolem;
+    [SerializeField] private MovimientoEnemigoFire enemigoFire;
     [SerializeField] private IAenemigo iaEnemigo;
     [SerializeField] private PatrullaEnemigo patrulla;
     [SerializeField] private CamaraSeguimiento camara;
 
     private bool enemigoParasitado = false;
-    private string nombre_enemigo;
+    private string nombreEnemigo;
     private Renderer[] renderers;
-    private string[] tipos_enemigos = { "Golem", "Fire" };
-    private string tipo_enemigo="";
+    private string[] tiposEnemigos = { "Golem", "Fire" };
+    private string tipoEnemigo = "";
+    private Animator animator;
+    private bool muerto;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
-        tipo_enemigo=this.transform.gameObject.name;
-        enemigo.enabled = false;
-        enemigo_fire.enabled = false;
+        tipoEnemigo = this.transform.gameObject.name;
+        enemigoGolem.enabled = false;
+        enemigoFire.enabled = false;
         
     }
     
@@ -47,18 +57,18 @@ public class Parasitar : MonoBehaviour
             
             OcultarPersonaje();
 
-            if (tipo_enemigo == tipos_enemigos[0])
+            if (tipoEnemigo == tiposEnemigos[0])
             {
-                enemigo.enabled = true; // Activamos  el control del enemigo
+                enemigoGolem.enabled = true; // Activamos  el control del enemigo
                 patrulla.enabled = false; // Desactivamos su patrulla
-                camara.objetivo = enemigo.transform;
+                camara.objetivo = enemigoGolem.transform;
             }
 
-            if (tipo_enemigo == tipos_enemigos[1])
+            if (tipoEnemigo == tiposEnemigos[1])
             {
-                enemigo_fire.enabled = true; // Activamos  el control del enemigo
+                enemigoFire.enabled = true; // Activamos  el control del enemigo
                 iaEnemigo.enabled = false; // Desactivamos su IA
-                camara.objetivo = enemigo_fire.transform;
+                camara.objetivo = enemigoFire.transform;
             }
                          
         }
@@ -82,34 +92,48 @@ public class Parasitar : MonoBehaviour
     }
 
     private void Desinfectar() {
-            enemigoParasitado = false;
+        enemigoParasitado = false;
 
-            if (tipo_enemigo== tipos_enemigos[0]) { 
-               if (enemigo != null) Destroy(enemigo.gameObject);
-            }
+        StartCoroutine(morir(tiempoEspera));
 
-            if (tipo_enemigo == tipos_enemigos[1])
-            {
-               if (enemigo_fire != null) Destroy(enemigo_fire.gameObject);
-            }
+        jugador.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
-            jugador.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        jugador.GetComponent<Rigidbody>().isKinematic = false;
+        jugador.GetComponent<CapsuleCollider>().enabled = true; //Activamos el collider
 
-            jugador.GetComponent<Rigidbody>().isKinematic = false;
-            jugador.GetComponent<CapsuleCollider>().enabled = true; //Activamos el collider
-
-            renderers = jugador.GetComponentsInChildren<Renderer>();
+        renderers = jugador.GetComponentsInChildren<Renderer>();
 
 
-            for (int i = 1; i < renderers.Length; i++)
-            {
-                renderers[i].enabled = true;
-            }
+        for (int i = 1; i < renderers.Length; i++)
+        {
+            renderers[i].enabled = true;
+        }
             
-            jugador.enabled = true; //Devolvemos el control al jugador
-            camara.objetivo = jugador.transform; //Pasamos la cámara al jugador
-            jugador.audioPasos.enabled = true;
-            jugador.audioPasos.Play();
-            
+        jugador.enabled = true; //Devolvemos el control al jugador
+        camara.objetivo = jugador.transform; //Pasamos la cámara al jugador
+        jugador.audioPasos.enabled = true;
+        jugador.audioPasos.Play();
+    }
+    //private void morir()
+    //{
+    //    animator.SetTrigger("Muerto");
+    //}
+    private IEnumerator morir(float tiempoEspera)
+    {
+        animator.SetTrigger("Muerto");
+        yield return new WaitForSeconds(tiempoEspera);
+        if (tipoEnemigo == tiposEnemigos[0]) {
+            if (enemigoGolem != null)
+            {
+                Destroy (enemigoGolem.gameObject);
+            }
+        }
+        if (tipoEnemigo == tiposEnemigos[1])
+        {
+            if (enemigoFire != null)
+            {
+                Destroy (enemigoFire.gameObject);
+            }
+        }
     }
 }

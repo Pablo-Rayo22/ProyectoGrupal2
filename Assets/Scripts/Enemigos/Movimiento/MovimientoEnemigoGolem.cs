@@ -1,6 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class MovimientoEnemigoFire : MonoBehaviour
+public class MovimientoEnemigoGolem : MonoBehaviour
 {
     private CharacterController controller;
     private Animator animator;
@@ -10,7 +11,8 @@ public class MovimientoEnemigoFire : MonoBehaviour
     public float velocidadCaminando = 5f;
     public float velocidadCorriendo = 10f;
     public float velocidadRotacion = 100f;
-    public float alturaSalto = 1.5f;
+    public float alcanceGolpe = 1.5f;
+
 
     private float gravedad = -9.81f;
     private Vector3 velocidad;
@@ -27,7 +29,7 @@ public class MovimientoEnemigoFire : MonoBehaviour
 
     void Update()
     {
-        //  Verificar si est· en el suelo
+        //  Verificar si est√° en el suelo
         enSuelo = controller.isGrounded;
 
         //  Correr (Shift izquierdo)
@@ -58,18 +60,18 @@ public class MovimientoEnemigoFire : MonoBehaviour
         controller.Move(moverDireccion * velocidadActual * Time.deltaTime);
 
 
-        // Hacer que el personaje gire hacia donde se est· moviendo
+        // Hacer que el personaje gire hacia donde se est√° moviendo
         if (moverDireccion.magnitude > 0.1f)
         {
             Quaternion rotacionObjetivo = Quaternion.LookRotation(moverDireccion);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, 10f * Time.deltaTime);
         }
 
-        /*  Salto
-        if (Input.GetButtonDown("Jump") && enSuelo)
+        //  Salto
+       /* if (Input.GetButtonDown("Jump") && enSuelo)
         {
             velocidad.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
-            //animator.SetTrigger("Jump"); // AnimaciÛn de salto
+            animator.SetTrigger("Jump"); // Animaci√≥n de salto
         }*/
 
         //  Aplicar gravedad
@@ -77,26 +79,42 @@ public class MovimientoEnemigoFire : MonoBehaviour
         controller.Move(velocidad * Time.deltaTime);
 
         // ACTUALIZAR ANIMACIONES
-        ActualizarAnimacionesFire(moverDireccion.magnitude, estaCorriendo);
+        ActualizarAnimaciones(moverDireccion.magnitude, estaCorriendo);
 
-        //DISPARO de bolas de fuego
-        if (Input.GetMouseButtonDown(0))
+        // Atacar
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-           
+            Atacar();
         }
     }
 
-    void ActualizarAnimacionesFire(float moverMagnitud, bool estaCorriendo)
+    private void Atacar()
     {
-        // Par·metro para velocidad de movimiento 
-         animator.SetFloat("Speed", moverMagnitud);
+        animator.SetTrigger("Atacando");
+        Collider[] colliders = Physics.OverlapSphere(transform.position, alcanceGolpe);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject.CompareTag("Caja"))
+            {
+                Destroy(colliders[i].gameObject);
+            }
+        }
+    }
 
-        //Par·metro para saber si est· corriendo
-        animator.SetBool("IsRunning", estaCorriendo && moverMagnitud > 0.1f);
-
-        //Par·metro para saber si est· en el suelo
-        animator.SetBool("IsGrounded", enSuelo);
-
+    void ActualizarAnimaciones(float moverMagnitud, bool estaCorriendo)
+    {
         
+        // Par√°metro para velocidad de movimiento 
+        animator.SetFloat("Velocidad", moverMagnitud);
+        
+        //animator.SetBool("Muerto", true); 
+        // Par√°metro para saber si est√° corriendo
+        //animator.SetBool("IsRunning", estaCorriendo && moverMagnitud > 0.1f);
+
+        // Par√°metro para saber si est√° en el suelo
+        //animator.SetBool("IsGrounded", enSuelo);
+
+        // Velocidad vertical para animaciones de ca√≠da
+        //animator.SetFloat("VerticalVelocity", velocity.y);
     }
 }

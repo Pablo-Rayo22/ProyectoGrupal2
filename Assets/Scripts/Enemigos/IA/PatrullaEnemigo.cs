@@ -4,12 +4,18 @@ using UnityEngine.Rendering;
 
 public class PatrullaEnemigo : MonoBehaviour
 {
+    private Animator animator;
     private bool corutinaActiva = false;
     private Vector3 posicionInicial;
     public Transform objetivo;
-    public Quaternion rotacionFinal;
+    private Quaternion rotacionFinal;
     public float tiempoInterpolacion = 0f;
     public float tiempoRotacion = 0f;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
@@ -37,6 +43,7 @@ public class PatrullaEnemigo : MonoBehaviour
         {
             transform.position = Vector3.Lerp(posicionInicial, objetivo.position, tiempoTranscurrido / tiempoInterpolacion);
             tiempoTranscurrido += Time.deltaTime;
+            animator.SetFloat("Velocidad", tiempoInterpolacion);
             yield return null; // Para detener la corrutina en el siguiente frame
         }
         objetivo.position = transform.position;

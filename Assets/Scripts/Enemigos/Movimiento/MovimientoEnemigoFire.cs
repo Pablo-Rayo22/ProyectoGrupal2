@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class MovimientoEnemigo : MonoBehaviour
+public class MovimientoEnemigoFire : MonoBehaviour
 {
     private CharacterController controller;
-    //private Animator animator;
+    private Animator animator;
     private Transform cameraTransform;
 
 
@@ -20,14 +20,14 @@ public class MovimientoEnemigo : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<CharacterController>();
-        // animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         cameraTransform = Camera.main.transform;
 
     }
 
     void Update()
     {
-        //  Verificar si está en el suelo
+        //  Verificar si est� en el suelo
         enSuelo = controller.isGrounded;
 
         //  Correr (Shift izquierdo)
@@ -58,18 +58,18 @@ public class MovimientoEnemigo : MonoBehaviour
         controller.Move(moverDireccion * velocidadActual * Time.deltaTime);
 
 
-        // Hacer que el personaje gire hacia donde se está moviendo
+        // Hacer que el personaje gire hacia donde se est� moviendo
         if (moverDireccion.magnitude > 0.1f)
         {
             Quaternion rotacionObjetivo = Quaternion.LookRotation(moverDireccion);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, 10f * Time.deltaTime);
         }
 
-        //  Salto
-       /* if (Input.GetButtonDown("Jump") && enSuelo)
+        /*  Salto
+        if (Input.GetButtonDown("Jump") && enSuelo)
         {
             velocidad.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
-            //animator.SetTrigger("Jump"); // Animación de salto
+            //animator.SetTrigger("Jump"); // Animaci�n de salto
         }*/
 
         //  Aplicar gravedad
@@ -77,27 +77,26 @@ public class MovimientoEnemigo : MonoBehaviour
         controller.Move(velocidad * Time.deltaTime);
 
         // ACTUALIZAR ANIMACIONES
-        ActualizarAnimaciones(moverDireccion.magnitude, estaCorriendo);
+        ActualizarAnimacionesFire(moverDireccion.magnitude, estaCorriendo);
 
-        /* DISPARO de bolas de fuego
-    if (Input.GetMouseButtonDown(0))
-    {
-           //Disparar();
-    }*/
+        //DISPARO de bolas de fuego
+        if (Input.GetMouseButtonDown(0))
+        {
+           
+        }
     }
 
-    void ActualizarAnimaciones(float moverMagnitud, bool estaCorriendo)
+    void ActualizarAnimacionesFire(float moverMagnitud, bool estaCorriendo)
     {
-        // Parámetro para velocidad de movimiento 
-        //animator.SetFloat("Speed", moverMagnitud);
+        // Par�metro para velocidad de movimiento 
+         animator.SetFloat("Velocidad", moverMagnitud);
 
-        // Parámetro para saber si está corriendo
-        //animator.SetBool("IsRunning", estaCorriendo && moverMagnitud > 0.1f);
+        //Par�metro para saber si est� corriendo
+        animator.SetBool("EstaCorriendo", estaCorriendo && moverMagnitud > 0.1f);
 
-        // Parámetro para saber si está en el suelo
-        //animator.SetBool("IsGrounded", enSuelo);
+        //Par�metro para saber si est� en el suelo
+        animator.SetBool("EnSuelo", enSuelo);
 
-        // Velocidad vertical para animaciones de caída
-        //animator.SetFloat("VerticalVelocity", velocity.y);
+        
     }
 }
