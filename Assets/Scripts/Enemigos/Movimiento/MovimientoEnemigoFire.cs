@@ -18,6 +18,7 @@ public class MovimientoEnemigoFire : MonoBehaviour
     private float velocidadActual;
     private AudioSource audioPasos;
     public GameObject bola_fuego;
+    public Transform spawnPoint;
 
     void Awake()
     {

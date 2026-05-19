@@ -4914,6 +4914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::bolaFuego
   power: 20
   lifeTime: 5
+  sonidoImpacto: {fileID: 8300000, guid: cfe66303751a96844b7c57cbd4ffb90e, type: 3}
 --- !u!114 &22269109365802163
 MonoBehaviour:
   m_ObjectHideFlags: 0

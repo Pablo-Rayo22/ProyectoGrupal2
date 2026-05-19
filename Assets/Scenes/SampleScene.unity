@@ -5710,17 +5710,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4a5d58239431e540b96817852d5f840, type: 3}
---- !u!114 &399793772 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2786221475756334882, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
-  m_PrefabInstance: {fileID: 4189575507291337623}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e0b808df10f7041a70101768dabda3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigoGolem
 --- !u!1001 &400275790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28709,6 +28698,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ea206418ee5420841927ef825d708ed1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2121862217}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ea206418ee5420841927ef825d708ed1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2121862220}
   m_SourcePrefab: {fileID: 100100000, guid: ea206418ee5420841927ef825d708ed1, type: 3}
 --- !u!4 &2121862209 stripped
 Transform:
@@ -28777,6 +28769,8 @@ MonoBehaviour:
   velocidadCorriendo: 10
   velocidadRotacion: 100
   alturaSalto: 1.5
+  bola_fuego: {fileID: 3563705212209046315, guid: 5dcaade724a51b540a015bd43c17d7c9, type: 3}
+  spawnPoint: {fileID: 1385471823}
 --- !u!95 &2121862218
 Animator:
   serializedVersion: 7
@@ -28814,11 +28808,108 @@ MonoBehaviour:
   tiempoMuerte: 3
   proyectil: {fileID: 1268844505366026008, guid: 7b05fdf0b47a756478f9e1c6be997bdc, type: 3}
   jugador: {fileID: 1918074105}
-  enemigoGolem: {fileID: 0}
+  enemigoGolem: {fileID: 4189575507291337627}
   enemigoFire: {fileID: 2121862217}
   iaEnemigo: {fileID: 2121862215}
-  patrulla: {fileID: 0}
+  patrulla: {fileID: 4189575507291337625}
   camara: {fileID: 330585548}
+--- !u!82 &2121862220
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121862210}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: b172cd6680236094cb97e5ced26802e1, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &2121965967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29462,16 +29553,90 @@ PrefabInstance:
     - target: {fileID: 5376490173064560571, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
       propertyPath: enemigoGolem
       value: 
-      objectReference: {fileID: 399793772}
+      objectReference: {fileID: 0}
     - target: {fileID: 7022810994118134754, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
       propertyPath: objetivo
       value: 
       objectReference: {fileID: 1702098363}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5376490173064560571, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+    - {fileID: 7022810994118134754, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+    - {fileID: 2786221475756334882, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 736149065931207103, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4189575507291337626}
+    - targetCorrespondingSourceObject: {fileID: 736149065931207103, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4189575507291337627}
+    - targetCorrespondingSourceObject: {fileID: 736149065931207103, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4189575507291337625}
   m_SourcePrefab: {fileID: 100100000, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+--- !u!1 &4189575507291337624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 736149065931207103, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+  m_PrefabInstance: {fileID: 4189575507291337623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4189575507291337625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189575507291337624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16dc0a9801bd0df439b0c64192e811b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatrullaEnemigo
+  objetivo: {fileID: 0}
+  tiempoInterpolacion: 0
+  tiempoRotacion: 0
+  audioPasos: {fileID: 0}
+  sonidoPasos: {fileID: 0}
+--- !u!114 &4189575507291337626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189575507291337624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa596dc4fdb0b49459ad4ca0b9a4bbef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Parasitar
+  tiempoMuerte: 3
+  proyectil: {fileID: 0}
+  jugador: {fileID: 0}
+  enemigoGolem: {fileID: 0}
+  enemigoFire: {fileID: 0}
+  iaEnemigo: {fileID: 0}
+  patrulla: {fileID: 0}
+  camara: {fileID: 0}
+--- !u!114 &4189575507291337627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189575507291337624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e0b808df10f7041a70101768dabda3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigoGolem
+  velocidadCaminando: 5
+  velocidadCorriendo: 10
+  velocidadRotacion: 100
+  alcanceGolpe: 1.5
+  audioPasos: {fileID: 0}
+  audioGolpe: {fileID: 0}
+  sonidoPasos: {fileID: 0}
+  sonidoGolpe: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
