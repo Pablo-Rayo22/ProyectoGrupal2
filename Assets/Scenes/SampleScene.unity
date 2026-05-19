@@ -29056,6 +29056,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -2.57
       objectReference: {fileID: 0}
+    - target: {fileID: 274036420740863201, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+      propertyPath: objetivo
+      value: 
+      objectReference: {fileID: 1702098363}
     - target: {fileID: 301628727635052771, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.3255615
@@ -29128,85 +29132,19 @@ PrefabInstance:
       propertyPath: objetivo
       value: 
       objectReference: {fileID: 1702098363}
-    m_RemovedComponents:
-    - {fileID: 5376490173064560571, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
-    - {fileID: 7022810994118134754, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
-    - {fileID: 2786221475756334882, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+    - target: {fileID: 8618647138179345084, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+      propertyPath: camara
+      value: 
+      objectReference: {fileID: 330585548}
+    - target: {fileID: 8618647138179345084, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+      propertyPath: jugador
+      value: 
+      objectReference: {fileID: 1918074105}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 736149065931207103, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4189575507291337626}
-    - targetCorrespondingSourceObject: {fileID: 736149065931207103, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4189575507291337627}
-    - targetCorrespondingSourceObject: {fileID: 736149065931207103, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4189575507291337625}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
---- !u!1 &4189575507291337624 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 736149065931207103, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
-  m_PrefabInstance: {fileID: 4189575507291337623}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4189575507291337625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4189575507291337624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16dc0a9801bd0df439b0c64192e811b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PatrullaEnemigo
-  objetivo: {fileID: 0}
-  tiempoInterpolacion: 0
-  tiempoRotacion: 0
-  audioPasos: {fileID: 0}
-  sonidoPasos: {fileID: 0}
---- !u!114 &4189575507291337626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4189575507291337624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa596dc4fdb0b49459ad4ca0b9a4bbef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Parasitar
-  tiempoMuerte: 3
-  proyectil: {fileID: 0}
-  jugador: {fileID: 0}
-  enemigoGolem: {fileID: 0}
-  enemigoFire: {fileID: 0}
-  iaEnemigo: {fileID: 0}
-  patrulla: {fileID: 0}
-  camara: {fileID: 0}
---- !u!114 &4189575507291337627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4189575507291337624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e0b808df10f7041a70101768dabda3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigoGolem
-  velocidadCaminando: 5
-  velocidadCorriendo: 10
-  velocidadRotacion: 100
-  alcanceGolpe: 1.5
-  audioPasos: {fileID: 0}
-  audioGolpe: {fileID: 0}
-  sonidoPasos: {fileID: 0}
-  sonidoGolpe: {fileID: 0}
 --- !u!1001 &6570949739127889750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29266,11 +29204,11 @@ PrefabInstance:
     - target: {fileID: 5776045073940153363, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: patrulla
       value: 
-      objectReference: {fileID: 4189575507291337625}
+      objectReference: {fileID: 0}
     - target: {fileID: 5776045073940153363, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: enemigoGolem
       value: 
-      objectReference: {fileID: 4189575507291337627}
+      objectReference: {fileID: 0}
     - target: {fileID: 7056437029127475820, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: m_Name
       value: EnemigoFire
