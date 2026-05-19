@@ -7,7 +7,8 @@ public class bolaFuego : MonoBehaviour
     public float power = 20f;
     public float lifeTime = 5f;
     private float deltatime = 0f;
-    
+    public AudioClip sonidoImpacto;
+
 
     private Rigidbody rb;
 
@@ -34,7 +35,12 @@ public class bolaFuego : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        
+        Vector3 puntoImpacto=collision.gameObject.transform.position;
+
+        AudioSource.PlayClipAtPoint(
+           sonidoImpacto,
+           puntoImpacto
+        );
 
         if (collision.tag == "Player")
         {

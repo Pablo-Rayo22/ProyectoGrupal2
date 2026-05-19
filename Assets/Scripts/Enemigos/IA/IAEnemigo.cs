@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +21,7 @@ public class IAenemigo : MonoBehaviour
     public Transform spawnPoint;
     private float shootRateTime = 0;
     private float shootRate = 2f;
+    private AudioSource audioPasos;
 
 
     void Start()
@@ -88,5 +89,22 @@ public class IAenemigo : MonoBehaviour
             }
         }
         animator.SetFloat("Velocidad", velocidad);
+
+        // 🔊 SONIDO DE PASOS
+        if (velocidad > 0.1f)
+        {
+            if (!audioPasos.isPlaying)
+            {
+                audioPasos.loop = true;
+                audioPasos.Play();
+            }
+        }
+        else
+        {
+            if (audioPasos.isPlaying)
+            {
+                audioPasos.Stop();
+            }
+        }
     }
 }

@@ -7,8 +7,8 @@ public class MovimientoEnemigoFire : MonoBehaviour
     private Transform cameraTransform;
 
 
-    public float velocidadCaminando = 5f;
-    public float velocidadCorriendo = 10f;
+    public float velocidadCaminando = 10f;
+    public float velocidadCorriendo = 20f;
     public float velocidadRotacion = 100f;
     public float alturaSalto = 1.5f;
 
@@ -16,12 +16,15 @@ public class MovimientoEnemigoFire : MonoBehaviour
     private Vector3 velocidad;
     private bool enSuelo;
     private float velocidadActual;
+    private AudioSource audioPasos;
+    public GameObject bola_fuego;
 
     void Awake()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         cameraTransform = Camera.main.transform;
+        audioPasos = GetComponent<AudioSource>();
 
     }
 
@@ -65,12 +68,12 @@ public class MovimientoEnemigoFire : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, 10f * Time.deltaTime);
         }
 
-        /*  Salto
+        //  Salto
         if (Input.GetButtonDown("Jump") && enSuelo)
         {
             velocidad.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
-            //animator.SetTrigger("Jump"); // Animaci�n de salto
-        }*/
+            animator.SetTrigger("Jump"); // Animaci�n de salto
+        }
 
         //  Aplicar gravedad
         velocidad.y += gravedad * Time.deltaTime;
@@ -82,7 +85,25 @@ public class MovimientoEnemigoFire : MonoBehaviour
         //DISPARO de bolas de fuego
         if (Input.GetMouseButtonDown(0))
         {
-           
+            GameObject newbola;
+            newbola = Instantiate(bola_fuego, spawnPoint.position, spawnPoint.rotation);
+        }
+
+        // 🔊 SONIDO DE PASOS
+        if (moverDireccion.magnitude > 0.1f && enSuelo)
+        {
+            if (!audioPasos.isPlaying)
+            {
+                audioPasos.loop = true;
+                audioPasos.Play();
+            }
+        }
+        else
+        {
+            if (audioPasos.isPlaying)
+            {
+                audioPasos.Stop();
+            }
         }
     }
 
