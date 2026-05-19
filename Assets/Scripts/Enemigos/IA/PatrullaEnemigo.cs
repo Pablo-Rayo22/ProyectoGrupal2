@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Rendering;
+using UnityEngine.Audio;
 
 public class PatrullaEnemigo : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PatrullaEnemigo : MonoBehaviour
     private Quaternion rotacionFinal;
     public float tiempoInterpolacion = 0f;
     public float tiempoRotacion = 0f;
+    public AudioSource audioPasos;
+    public AudioClip sonidoPasos;
 
     private void Awake()
     {
@@ -39,14 +42,22 @@ public class PatrullaEnemigo : MonoBehaviour
     private IEnumerator Patrullar()
     {
         float tiempoTranscurrido = 0f;
+        Vector3 moverDireccion = new Vector3(0,0,0);
         while (tiempoTranscurrido < tiempoInterpolacion)
         {
             transform.position = Vector3.Lerp(posicionInicial, objetivo.position, tiempoTranscurrido / tiempoInterpolacion);
             tiempoTranscurrido += Time.deltaTime;
             animator.SetFloat("Velocidad", tiempoInterpolacion);
+            if (!audioPasos.isPlaying)
+            {
+                audioPasos.clip = sonidoPasos;
+                audioPasos.loop = true;
+                audioPasos.Play();
+            }
             yield return null; // Para detener la corrutina en el siguiente frame
         }
         objetivo.position = transform.position;
+        audioPasos.Stop();
         cambiarObjetivo();
     }
     private IEnumerator Rotar()

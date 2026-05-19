@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Parasitar : MonoBehaviour
 {
-    public float tiempoEspera = 3f;
+    public float tiempoMuerte = 3f;
 
     [SerializeField] private GameObject proyectil;
     [SerializeField] private MovimientoJugador jugador;
@@ -21,7 +21,6 @@ public class Parasitar : MonoBehaviour
     private string[] tiposEnemigos = { "Golem", "Fire" };
     private string tipoEnemigo = "";
     private Animator animator;
-    private bool muerto;
 
     private void Awake()
     {
@@ -31,9 +30,14 @@ public class Parasitar : MonoBehaviour
     private void Start()
     {
         tipoEnemigo = this.transform.gameObject.name;
-        enemigoGolem.enabled = false;
-        enemigoFire.enabled = false;
-        
+        if (enemigoGolem != null)
+        {
+            enemigoGolem.enabled = false;
+        }
+        if (enemigoFire != null)
+        {
+            enemigoFire.enabled = false;
+        }
     }
     
     private void Update()
@@ -44,7 +48,6 @@ public class Parasitar : MonoBehaviour
         }
 
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         Infectar(collision.gameObject);
@@ -94,7 +97,7 @@ public class Parasitar : MonoBehaviour
     private void Desinfectar() {
         enemigoParasitado = false;
 
-        StartCoroutine(morir(tiempoEspera));
+        StartCoroutine(morir(tiempoMuerte));
 
         jugador.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
@@ -114,10 +117,6 @@ public class Parasitar : MonoBehaviour
         jugador.audioPasos.enabled = true;
         jugador.audioPasos.Play();
     }
-    //private void morir()
-    //{
-    //    animator.SetTrigger("Muerto");
-    //}
     private IEnumerator morir(float tiempoEspera)
     {
         animator.SetTrigger("Muerto");

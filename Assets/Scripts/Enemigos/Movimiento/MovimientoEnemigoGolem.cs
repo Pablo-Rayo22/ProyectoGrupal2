@@ -1,5 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 public class MovimientoEnemigoGolem : MonoBehaviour
 {
@@ -12,6 +14,11 @@ public class MovimientoEnemigoGolem : MonoBehaviour
     public float velocidadCorriendo = 10f;
     public float velocidadRotacion = 100f;
     public float alcanceGolpe = 1.5f;
+    public AudioSource audioPasos;
+    public AudioSource audioGolpe;
+    public AudioClip sonidoPasos;
+    public AudioClip sonidoGolpe;
+
 
 
     private float gravedad = -9.81f;
@@ -68,11 +75,11 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         }
 
         //  Salto
-       /* if (Input.GetButtonDown("Jump") && enSuelo)
-        {
-            velocidad.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
-            animator.SetTrigger("Jump"); // Animación de salto
-        }*/
+        /* if (Input.GetButtonDown("Jump") && enSuelo)
+         {
+             velocidad.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
+             animator.SetTrigger("Jump"); // Animación de salto
+         }*/
 
         //  Aplicar gravedad
         velocidad.y += gravedad * Time.deltaTime;
@@ -86,10 +93,18 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         {
             Atacar();
         }
+        // Pasos
+        reproducirSonidoPasos(moverDireccion);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        DaniarJugador(collision.gameObject);
     }
 
     private void Atacar()
     {
+        
         animator.SetTrigger("Atacando");
         Collider[] colliders = Physics.OverlapSphere(transform.position, alcanceGolpe);
         for (int i = 0; i < colliders.Length; i++)
@@ -97,6 +112,7 @@ public class MovimientoEnemigoGolem : MonoBehaviour
             if (colliders[i].gameObject.CompareTag("Caja"))
             {
                 Destroy(colliders[i].gameObject);
+                reproducirSonidoGolpe();
             }
         }
     }
@@ -117,4 +133,40 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         // Velocidad vertical para animaciones de caída
         //animator.SetFloat("VerticalVelocity", velocity.y);
     }
+
+    public void reproducirSonidoPasos(Vector3 moverDireccion)
+    {
+        if (moverDireccion.magnitude > 0.1f && enSuelo)
+        {
+            if (!audioPasos.isPlaying)
+            {
+                audioPasos.clip = sonidoPasos;
+                audioPasos.loop = true;
+                audioPasos.Play();
+            }
+        }
+        else
+        {
+            if (audioPasos.isPlaying)
+            {
+                audioPasos.Stop();
+            }
+        }
+    }
+
+    private void reproducirSonidoGolpe ()
+    {
+        audioGolpe.clip = sonidoGolpe;
+        audioGolpe.loop = false;
+        audioGolpe.Play();
+    }
+
+    private void DaniarJugador(GameObject collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            Debug.Log("Jugador tocado: " + collider.name);
+        }
+    }
 }
+
