@@ -30,14 +30,7 @@ public class Parasitar : MonoBehaviour
     private void Start()
     {
         tipoEnemigo = this.transform.gameObject.name;
-        if (enemigoGolem != null)
-        {
-            enemigoGolem.enabled = false;
-        }
-        if (enemigoFire != null)
-        {
-            enemigoFire.enabled = false;
-        }
+        desactivarControlEnemigos();
     }
     
     private void Update()
@@ -55,27 +48,32 @@ public class Parasitar : MonoBehaviour
 
     void Infectar(GameObject collider)
     {
-        if (!enemigoParasitado && collider.CompareTag("Proyectil")) {
+        if (!enemigoParasitado && collider.CompareTag("Proyectil"))
+        {
             enemigoParasitado = true;
-            
+
             OcultarPersonaje();
 
-            if (tipoEnemigo == tiposEnemigos[0])
-            {
-                enemigoGolem.enabled = true; // Activamos  el control del enemigo
-                patrulla.enabled = false; // Desactivamos su patrulla
-                camara.objetivo = enemigoGolem.transform;
-            }
+            activarControlEnemigos();
 
-            if (tipoEnemigo == tiposEnemigos[1])
-            {
-                enemigoFire.enabled = true; // Activamos  el control del enemigo
-                iaEnemigo.enabled = false; // Desactivamos su IA
-                camara.objetivo = enemigoFire.transform;
-            }
-                         
         }
 
+    }
+    private void activarControlEnemigos()
+    {
+        if (tipoEnemigo == tiposEnemigos[0])
+        {
+            enemigoGolem.enabled = true; // Activamos  el control del enemigo
+            patrulla.enabled = false; // Desactivamos su patrulla
+            camara.objetivo = enemigoGolem.transform;
+        }
+
+        if (tipoEnemigo == tiposEnemigos[1])
+        {
+            enemigoFire.enabled = true; // Activamos  el control del enemigo
+            iaEnemigo.enabled = false; // Desactivamos su IA
+            camara.objetivo = enemigoFire.transform;
+        }
     }
 
     private void OcultarPersonaje() {
@@ -117,13 +115,16 @@ public class Parasitar : MonoBehaviour
         jugador.audioPasos.enabled = true;
         jugador.audioPasos.Play();
     }
-    private IEnumerator morir(float tiempoEspera)
+    private IEnumerator morir(float tiempoMuerte)
     {
+
         animator.SetTrigger("Muerto");
-        yield return new WaitForSeconds(tiempoEspera);
+        desactivarControlEnemigos();
+        yield return new WaitForSeconds(tiempoMuerte);
         if (tipoEnemigo == tiposEnemigos[0]) {
             if (enemigoGolem != null)
             {
+                
                 Destroy (enemigoGolem.gameObject);
             }
         }
@@ -131,8 +132,22 @@ public class Parasitar : MonoBehaviour
         {
             if (enemigoFire != null)
             {
+                enemigoFire.enabled = false;
                 Destroy (enemigoFire.gameObject);
             }
+        }
+    }
+    private void desactivarControlEnemigos()
+    {
+        if (enemigoGolem != null && enemigoGolem.audioPasos != null)
+        {
+            enemigoGolem.enabled = false;
+            enemigoGolem.audioPasos.Stop();
+        }
+        if (enemigoFire != null && enemigoFire.GetComponent<AudioSource>() != null)
+        {
+            enemigoFire.enabled = false;
+            enemigoFire.GetComponent<AudioSource>().Stop();
         }
     }
 }

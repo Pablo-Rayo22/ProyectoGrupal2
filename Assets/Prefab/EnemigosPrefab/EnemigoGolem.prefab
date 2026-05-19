@@ -206,7 +206,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 0666f7487a21ca54699a580e4fe51f25, type: 3}
+  m_Resource: {fileID: 8300000, guid: 413fcea6b0ebaa74484f50f372f5fb9b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -368,13 +368,13 @@ PrefabInstance:
       addedObject: {fileID: 7994384911676531608}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c120eb199b5f00409c2f76450473230, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5376490173064560571}
+      addedObject: {fileID: 8618647138179345084}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c120eb199b5f00409c2f76450473230, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7022810994118134754}
+      addedObject: {fileID: 8026137059966977260}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c120eb199b5f00409c2f76450473230, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2786221475756334882}
+      addedObject: {fileID: 274036420740863201}
   m_SourcePrefab: {fileID: 100100000, guid: 3c120eb199b5f00409c2f76450473230, type: 3}
 --- !u!4 &107104528282741509 stripped
 Transform:
@@ -433,7 +433,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5376490173064560571
+--- !u!114 &8618647138179345084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -448,12 +448,32 @@ MonoBehaviour:
   tiempoMuerte: 3
   proyectil: {fileID: 1268844505366026008, guid: 7b05fdf0b47a756478f9e1c6be997bdc, type: 3}
   jugador: {fileID: 0}
-  enemigoGolem: {fileID: 2786221475756334882}
+  enemigoGolem: {fileID: 8026137059966977260}
   enemigoFire: {fileID: 0}
   iaEnemigo: {fileID: 0}
-  patrulla: {fileID: 7022810994118134754}
+  patrulla: {fileID: 274036420740863201}
   camara: {fileID: 0}
---- !u!114 &7022810994118134754
+--- !u!114 &8026137059966977260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736149065931207103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e0b808df10f7041a70101768dabda3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigoGolem
+  velocidadCaminando: 5
+  velocidadCorriendo: 10
+  velocidadRotacion: 100
+  alcanceGolpe: 2
+  audioPasos: {fileID: 8717617217950717418}
+  audioGolpe: {fileID: 990640869039362353}
+  sonidoPasos: {fileID: 8300000, guid: 413fcea6b0ebaa74484f50f372f5fb9b, type: 3}
+  sonidoGolpe: {fileID: 8300000, guid: d8ce2be70b76e0142998063a5178894c, type: 3}
+--- !u!114 &274036420740863201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -469,24 +489,4 @@ MonoBehaviour:
   tiempoInterpolacion: 2
   tiempoRotacion: 2
   audioPasos: {fileID: 8717617217950717418}
-  sonidoPasos: {fileID: 8300000, guid: 0666f7487a21ca54699a580e4fe51f25, type: 3}
---- !u!114 &2786221475756334882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736149065931207103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e0b808df10f7041a70101768dabda3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigoGolem
-  velocidadCaminando: 5
-  velocidadCorriendo: 10
-  velocidadRotacion: 100
-  alcanceGolpe: 1.5
-  audioPasos: {fileID: 8717617217950717418}
-  audioGolpe: {fileID: 990640869039362353}
-  sonidoPasos: {fileID: 8300000, guid: 0666f7487a21ca54699a580e4fe51f25, type: 3}
-  sonidoGolpe: {fileID: 8300000, guid: d8ce2be70b76e0142998063a5178894c, type: 3}
+  sonidoPasos: {fileID: 8300000, guid: 413fcea6b0ebaa74484f50f372f5fb9b, type: 3}

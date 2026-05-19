@@ -86,8 +86,8 @@ public class MovimientoEnemigoFire : MonoBehaviour
         //DISPARO de bolas de fuego
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject newbola;
-            newbola = Instantiate(bola_fuego, spawnPoint.position, spawnPoint.rotation);
+            GameObject nuevaBola;
+            nuevaBola = Instantiate(bola_fuego, spawnPoint.position, spawnPoint.rotation);
         }
 
         // 🔊 SONIDO DE PASOS

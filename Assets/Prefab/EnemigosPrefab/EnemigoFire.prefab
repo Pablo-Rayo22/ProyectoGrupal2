@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IAenemigo
   puntoA: {fileID: 5020845813797379498}
   puntoB: {fileID: 4912250906962119694}
-  bola_fuego: {fileID: 3563705212209046315, guid: 5dcaade724a51b540a015bd43c17d7c9, type: 3}
+  bolaFuego: {fileID: 3563705212209046315, guid: 5dcaade724a51b540a015bd43c17d7c9, type: 3}
   spawnPoint: {fileID: 9064689077373334806}
 --- !u!114 &5776045073940153363
 MonoBehaviour:
@@ -356,7 +356,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b172cd6680236094cb97e5ced26802e1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
