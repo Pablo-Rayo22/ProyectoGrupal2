@@ -28,6 +28,7 @@ public class IAenemigo : MonoBehaviour
         posicionInicial = new Vector3(puntoA.transform.position.x,puntoA.transform.position.y,puntoA.transform.position.z);
         posicionFinal = new Vector3(puntoB.transform.position.x, puntoB.transform.position.y,puntoB.transform.position.z);
         animator = GetComponent<Animator>();
+        audioPasos = GetComponent<AudioSource>();
         player = GameObject.Find("Jugador");
     }
 

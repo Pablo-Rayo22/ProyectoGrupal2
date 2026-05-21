@@ -4915,6 +4915,8 @@ MonoBehaviour:
   power: 20
   lifeTime: 5
   sonidoImpacto: {fileID: 8300000, guid: cfe66303751a96844b7c57cbd4ffb90e, type: 3}
+  sonidoRomperCaja: {fileID: 8300000, guid: ac21b40bfdbb2954eaa35355ab0e42bc, type: 3}
+  cristalPrefab: {fileID: 7508768510701008559, guid: 8d97c69b27d4ac3408d70078646e79b5, type: 3}
 --- !u!114 &22269109365802163
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11447,6 +11447,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f2c7b7467d1fae4086c5ad26e2bf9d3, type: 3}
+--- !u!114 &872832304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 274036420740863201, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+  m_PrefabInstance: {fileID: 4189575507291337623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16dc0a9801bd0df439b0c64192e811b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatrullaEnemigo
+--- !u!114 &872832309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8026137059966977260, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+  m_PrefabInstance: {fileID: 4189575507291337623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e0b808df10f7041a70101768dabda3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigoGolem
 --- !u!4 &877448898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2023702510270463196, guid: 1a73f86d0d77585459e58e7bd602d0fe, type: 3}
@@ -15617,6 +15639,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6396719995429918458, guid: 1ff04d07519cb854ca434757ea85fdfe, type: 3}
   m_PrefabInstance: {fileID: 360586514}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1159665245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7152963686113035581, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
+  m_PrefabInstance: {fileID: 6570949739127889750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 131603a706b4be547ba6569b2b11f36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigoFire
+--- !u!114 &1159665247 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8334139893804884813, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
+  m_PrefabInstance: {fileID: 6570949739127889750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9381b7d579658498b352a29494d747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IAenemigo
 --- !u!1001 &1161474330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15627,6 +15671,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2253605790648752752, guid: 8ceb3eb853ef32f44bebfc2f2a417faa, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2253605790648752752, guid: 8ceb3eb853ef32f44bebfc2f2a417faa, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6238389939897725885, guid: 8ceb3eb853ef32f44bebfc2f2a417faa, type: 3}
@@ -15687,7 +15735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6762407958141282567, guid: 8ceb3eb853ef32f44bebfc2f2a417faa, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Agua
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29144,6 +29192,14 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 1918074105}
+    - target: {fileID: 8618647138179345084, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+      propertyPath: iaEnemigo
+      value: 
+      objectReference: {fileID: 1159665247}
+    - target: {fileID: 8618647138179345084, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+      propertyPath: enemigoFire
+      value: 
+      objectReference: {fileID: 1159665245}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29208,11 +29264,11 @@ PrefabInstance:
     - target: {fileID: 5776045073940153363, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: patrulla
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 872832304}
     - target: {fileID: 5776045073940153363, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: enemigoGolem
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 872832309}
     - target: {fileID: 7056437029127475820, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: m_Name
       value: EnemigoFire
