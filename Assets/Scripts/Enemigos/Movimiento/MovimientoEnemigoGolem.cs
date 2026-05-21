@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 
@@ -14,6 +15,8 @@ public class MovimientoEnemigoGolem : MonoBehaviour
     public float velocidadCorriendo = 10f;
     public float velocidadRotacion = 100f;
     public float alcanceGolpe = 1.5f;
+    [Range (0.6f, 0.8f)]
+    public float tiempoEnAtacar = 1f;
     public AudioSource audioPasos;
     public AudioSource audioGolpe;
     public AudioClip sonidoPasos;
@@ -91,7 +94,7 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         // Atacar
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Atacar();
+            StartCoroutine(Atacar(tiempoEnAtacar));
         }
         // Pasos
         reproducirSonidoPasos(moverDireccion);
@@ -102,10 +105,10 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         DaniarJugador(collision.gameObject);
     }
 
-    private void Atacar()
-    {
-        
+    private IEnumerator Atacar(float tiempoEnAtacar)
+    { 
         animator.SetTrigger("Atacando");
+        yield return new WaitForSeconds(tiempoEnAtacar);
         Collider[] colliders = Physics.OverlapSphere(transform.position, alcanceGolpe);
         for (int i = 0; i < colliders.Length; i++)
         {

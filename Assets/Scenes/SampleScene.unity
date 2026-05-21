@@ -25544,7 +25544,7 @@ Transform:
   m_GameObject: {fileID: 1918074104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.8, z: -1.6}
+  m_LocalPosition: {x: -0, y: 1.8, z: -1.8}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -29132,6 +29132,10 @@ PrefabInstance:
       propertyPath: objetivo
       value: 
       objectReference: {fileID: 1702098363}
+    - target: {fileID: 8026137059966977260, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
+      propertyPath: tiempoEnAtacar
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8618647138179345084, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
       propertyPath: camara
       value: 

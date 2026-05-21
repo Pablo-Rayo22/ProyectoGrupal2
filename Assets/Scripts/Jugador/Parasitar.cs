@@ -30,7 +30,7 @@ public class Parasitar : MonoBehaviour
     private void Start()
     {
         tipoEnemigo = this.transform.gameObject.name;
-        desactivarControlEnemigos();
+        DesactivarControlEnemigos();
     }
     
     private void Update()
@@ -95,7 +95,7 @@ public class Parasitar : MonoBehaviour
     private void Desinfectar() {
         enemigoParasitado = false;
 
-        StartCoroutine(morir(tiempoMuerte));
+        StartCoroutine(Morir(tiempoMuerte));
 
         jugador.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
@@ -115,11 +115,11 @@ public class Parasitar : MonoBehaviour
         jugador.audioPasos.enabled = true;
         jugador.audioPasos.Play();
     }
-    private IEnumerator morir(float tiempoMuerte)
+    private IEnumerator Morir(float tiempoMuerte)
     {
 
         animator.SetTrigger("Muerto");
-        desactivarControlEnemigos();
+        DesactivarControlEnemigos();
         yield return new WaitForSeconds(tiempoMuerte);
         if (tipoEnemigo == tiposEnemigos[0]) {
             if (enemigoGolem != null)
@@ -137,7 +137,7 @@ public class Parasitar : MonoBehaviour
             }
         }
     }
-    private void desactivarControlEnemigos()
+    private void DesactivarControlEnemigos()
     {
         if (enemigoGolem != null && enemigoGolem.audioPasos != null)
         {

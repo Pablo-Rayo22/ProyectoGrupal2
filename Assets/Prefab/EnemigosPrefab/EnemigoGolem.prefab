@@ -469,6 +469,7 @@ MonoBehaviour:
   velocidadCorriendo: 10
   velocidadRotacion: 100
   alcanceGolpe: 2
+  tiempoEnAtacar: 0.7
   audioPasos: {fileID: 8717617217950717418}
   audioGolpe: {fileID: 990640869039362353}
   sonidoPasos: {fileID: 8300000, guid: 413fcea6b0ebaa74484f50f372f5fb9b, type: 3}
