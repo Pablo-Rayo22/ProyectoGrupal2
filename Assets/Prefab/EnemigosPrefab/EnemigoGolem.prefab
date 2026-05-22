@@ -465,6 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e0b808df10f7041a70101768dabda3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigoGolem
+  prueba: {fileID: 0}
   velocidadCaminando: 5
   velocidadCorriendo: 10
   velocidadRotacion: 100

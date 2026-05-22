@@ -232,3 +232,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Cristal
   velocidadRotacion: 100
   sonidoRecoger: {fileID: 8300000, guid: 48ec0f240befca944a838b1dfb478c12, type: 3}
+  sonidoImpacto: {fileID: 8300000, guid: cfe66303751a96844b7c57cbd4ffb90e, type: 3}
+  sonidoRomperCaja: {fileID: 8300000, guid: ac21b40bfdbb2954eaa35355ab0e42bc, type: 3}
+  cristalPrefab: {fileID: 7508768510701008559}

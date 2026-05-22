@@ -24,7 +24,7 @@ public class bolaFuego : MonoBehaviour
 
     void Update()
     {
-        
+
         deltatime += Time.deltaTime;
         if (deltatime >= tiempoVida)
         {
@@ -32,11 +32,11 @@ public class bolaFuego : MonoBehaviour
         }
     }
 
-    
+
 
     private void OnTriggerEnter(Collider collision)
     {
-        Vector3 puntoImpacto=collision.gameObject.transform.position;
+        Vector3 puntoImpacto = collision.gameObject.transform.position;
 
         AudioSource.PlayClipAtPoint(
            sonidoImpacto,
@@ -45,7 +45,7 @@ public class bolaFuego : MonoBehaviour
 
         if (collision.tag == "Player")
         {
-            
+
             Transform tr = collision.gameObject.transform;
             Destroy(this.gameObject);
 
@@ -55,46 +55,9 @@ public class bolaFuego : MonoBehaviour
         if (collision.tag == "Caja")
         {
 
-            AudioSource.PlayClipAtPoint(
-               sonidoRomperCaja,
-               puntoImpacto
-            );
-            
+            GameManager.instancia.GenerarDiamantes(collision);
 
-            GameManager.instancia.RomperCaja();
-
-            int cantidad = Random.Range(1, 3);
-
-            for (int i = 0; i < cantidad; i++)
-            {
-                 Vector3 posicion =
-                 collision.gameObject.transform.position + Vector3.up;
-
-                 GameObject cristal = Instantiate(
-                     cristalPrefab,
-                     posicion,
-                      Quaternion.identity
-                 );
-
-                 Rigidbody rb = cristal.GetComponent<Rigidbody>();
-
-                 
-                 Vector3 fuerza = new Vector3(
-                    Random.Range(-0.1f, 0.1f),
-                    Random.Range(0.5f, 1f),
-                    Random.Range(-0.1f, 0.1f)
-                 );
-
-                 rb.AddForce(
-                    fuerza,
-                    ForceMode.Impulse
-                 );
-                   
-                
-                Destroy(collision.gameObject);
-            }
         }
-        
     }
 }
     

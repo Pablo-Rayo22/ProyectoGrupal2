@@ -19,14 +19,17 @@ public class GameManager : MonoBehaviour
     public int cajasRotas = 0;
     public TextMeshProUGUI textoCajas;
 
+    [Header("GENERACION DIAMANTES")]
+    public AudioClip sonidoImpacto;
+    public AudioClip sonidoRomperCaja;
+    public GameObject cristalPrefab;
+
     void Awake()
     {
         if (instancia == null)
         {
             instancia = this;
             DontDestroyOnLoad(gameObject);
-
-            //vidas = vidasIniciales;
         }
         else
         {
@@ -96,6 +99,48 @@ public class GameManager : MonoBehaviour
         ActualizarUI();
     }
 
+    public void GenerarDiamantes(Collider collider)
+    {
+        Vector3 puntoImpacto = collider.transform.position;
+        AudioSource.PlayClipAtPoint(
+               sonidoRomperCaja,
+               puntoImpacto
+            );
+
+
+        GameManager.instancia.RomperCaja();
+
+        int cantidad = Random.Range(1, 3);
+
+        for (int i = 0; i < cantidad; i++)
+        {
+            Vector3 posicion =
+            collider.transform.position + Vector3.up;
+
+            GameObject cristal = Instantiate(
+                cristalPrefab,
+                posicion,
+                 Quaternion.identity
+            );
+
+            Rigidbody rb = cristal.GetComponent<Rigidbody>();
+
+
+            Vector3 fuerza = new Vector3(
+               Random.Range(-0.1f, 0.1f),
+               Random.Range(0.5f, 1f),
+               Random.Range(-0.1f, 0.1f)
+            );
+
+            rb.AddForce(
+               fuerza,
+               ForceMode.Impulse
+            );
+
+
+            Destroy(collider.gameObject);
+        }
+    }
     public void reiniciarUI()
     {
         vidas = vidasIniciales;

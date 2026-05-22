@@ -67,4 +67,5 @@ public class JugadorVida : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
         GameManager.instancia.reiniciarUI();
     }
+    
 }

@@ -9,7 +9,7 @@ public class MovimientoEnemigoGolem : MonoBehaviour
     private CharacterController controller;
     private Animator animator;
     private Transform cameraTransform;
-
+    public Cristal cristal;
 
     public float velocidadCaminando = 5f;
     public float velocidadCorriendo = 10f;
@@ -22,8 +22,6 @@ public class MovimientoEnemigoGolem : MonoBehaviour
     public AudioClip sonidoPasos;
     public AudioClip sonidoGolpe;
 
-
-
     private float gravedad = -9.81f;
     private Vector3 velocidad;
     private bool enSuelo;
@@ -34,7 +32,6 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         cameraTransform = Camera.main.transform;
-
     }
 
     void Update()
@@ -103,6 +100,7 @@ public class MovimientoEnemigoGolem : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         DaniarJugador(collision.gameObject);
+        
     }
 
     private IEnumerator Atacar(float tiempoEnAtacar)
@@ -112,9 +110,9 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, alcanceGolpe);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject.CompareTag("Caja"))
+            if (colliders[i].CompareTag("Caja"))
             {
-                Destroy(colliders[i].gameObject);
+                GameManager.instancia.GenerarDiamantes(colliders[i]);
                 reproducirSonidoGolpe();
             }
         }
@@ -171,5 +169,7 @@ public class MovimientoEnemigoGolem : MonoBehaviour
             Debug.Log("Jugador tocado: " + collider.name);
         }
     }
+
+
 }
 
