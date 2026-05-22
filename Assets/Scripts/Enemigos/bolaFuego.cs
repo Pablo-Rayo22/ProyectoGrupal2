@@ -54,9 +54,7 @@ public class bolaFuego : MonoBehaviour
 
         if (collision.tag == "Caja")
         {
-
             GameManager.instancia.GenerarDiamantes(collision);
-
         }
     }
 }
