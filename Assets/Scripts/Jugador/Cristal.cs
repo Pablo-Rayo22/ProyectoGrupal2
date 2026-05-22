@@ -23,7 +23,7 @@ public class Cristal : MonoBehaviour
                 );
             }
 
-            GameManager.instancia.AñadirDiamante();
+            GameManager.instancia.AniadirDiamante();
 
             Destroy(transform.parent.gameObject);
         }

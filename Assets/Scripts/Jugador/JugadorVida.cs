@@ -12,7 +12,7 @@ public class JugadorVida : MonoBehaviour
     [Header("MUERTE")]
     public float tiempoMuerte = 2f;
 
-    void Start()
+    void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -39,8 +39,15 @@ public class JugadorVida : MonoBehaviour
         {
             movimiento.enabled = false;
         }
+        if (GameManager.instancia.vidas > 0)
+        {
+            StartCoroutine(ReiniciarEscena());
+        }
+        else 
+        { 
+            StartCoroutine(GameOver());
+        }
 
-        StartCoroutine(ReiniciarEscena());
     }
 
     IEnumerator ReiniciarEscena()
@@ -52,5 +59,12 @@ public class JugadorVida : MonoBehaviour
         SceneManager.LoadScene(
             SceneManager.GetActiveScene().buildIndex
         );
+    }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(tiempoMuerte);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        GameManager.instancia.reiniciarUI();
     }
 }

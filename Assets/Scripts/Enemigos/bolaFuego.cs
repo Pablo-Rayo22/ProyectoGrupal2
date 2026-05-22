@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class bolaFuego : MonoBehaviour
 {
-    public float power = 20f;
-    public float lifeTime = 5f;
+    public float poder = 20f;
+    public float tiempoVida = 5f;
     private float deltatime = 0f;
     public AudioClip sonidoImpacto;
 
@@ -17,7 +17,7 @@ public class bolaFuego : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = this.transform.forward * power;
+        rb.linearVelocity = this.transform.forward * poder;
 
     }
 
@@ -25,7 +25,7 @@ public class bolaFuego : MonoBehaviour
     {
         
         deltatime += Time.deltaTime;
-        if (deltatime >= lifeTime)
+        if (deltatime >= tiempoVida)
         {
             Destroy(this.gameObject);
         }

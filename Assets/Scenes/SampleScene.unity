@@ -22513,7 +22513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f615cd46327be9547807d9b9be7e3fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  vidas: 5
+  vidasIniciales: 5
+  vidas: 0
   textoVidas: {fileID: 340833183}
   diamantes: 0
   textoDiamantes: {fileID: 567535469}
@@ -25544,7 +25545,7 @@ Transform:
   m_GameObject: {fileID: 1918074104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.8, z: -1.8}
+  m_LocalPosition: {x: -0, y: 1.8, z: 52}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:

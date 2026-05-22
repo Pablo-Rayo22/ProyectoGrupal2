@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instancia;
 
     [Header("VIDAS")]
-    public int vidas = 5;
+    public int vidasIniciales = 5;
+    public int vidas;
+    
     public TextMeshProUGUI textoVidas;
 
     [Header("DIAMANTES")]
@@ -23,14 +25,17 @@ public class GameManager : MonoBehaviour
         {
             instancia = this;
             DontDestroyOnLoad(gameObject);
+
+            //vidas = vidasIniciales;
         }
         else
         {
             Destroy(gameObject);
             return;
         }
+        vidas = vidasIniciales;
     }
-
+    
     void Update()
     {
         if (textoVidas == null)
@@ -72,7 +77,7 @@ public class GameManager : MonoBehaviour
             textoCajas.text = "x" + cajasRotas;
     }
 
-    public void AñadirDiamante()
+    public void AniadirDiamante()
     {
         diamantes++;
 
@@ -87,6 +92,15 @@ public class GameManager : MonoBehaviour
     public void RomperCaja()
     {
         cajasRotas++;
+
+        ActualizarUI();
+    }
+
+    public void reiniciarUI()
+    {
+        vidas = vidasIniciales;
+        diamantes = 0;
+        cajasRotas = 0;
 
         ActualizarUI();
     }
