@@ -19,6 +19,9 @@ public class MovimientoEnemigoFire : MonoBehaviour
     private AudioSource audioPasos;
     public GameObject bola_fuego;
     public Transform spawnPoint;
+   
+
+    
 
     void Awake()
     {
@@ -121,4 +124,7 @@ public class MovimientoEnemigoFire : MonoBehaviour
 
         
     }
+
+    
+    
 }
