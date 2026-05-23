@@ -9,7 +9,7 @@ public class CamaraSeguimiento : MonoBehaviour
     void LateUpdate()
     {
         if (objetivo == null) return;
-
+        
         // Posición deseada
         Vector3 posicionDeseada = objetivo.position + offset;
 

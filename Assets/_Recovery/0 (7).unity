@@ -15702,12 +15702,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6762407958141282567, guid: 8ceb3eb853ef32f44bebfc2f2a417faa, type: 3}
       propertyPath: m_TagString
-      value: Agua
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6762407958141282567, guid: 8ceb3eb853ef32f44bebfc2f2a417faa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1974069761}
   m_SourcePrefab: {fileID: 100100000, guid: 8ceb3eb853ef32f44bebfc2f2a417faa, type: 3}
 --- !u!1001 &1166891012
 PrefabInstance:
@@ -26339,11 +26342,32 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd72732cab1e29742b6f7260eb687c9c, type: 3}
---- !u!64 &1974069762 stripped
-MeshCollider:
-  m_CorrespondingSourceObject: {fileID: 2253605790648752752, guid: 8ceb3eb853ef32f44bebfc2f2a417faa, type: 3}
+--- !u!1 &1974069757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6762407958141282567, guid: 8ceb3eb853ef32f44bebfc2f2a417faa, type: 3}
   m_PrefabInstance: {fileID: 1161474330}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1974069761
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974069757}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 0.99999994, z: 5}
+  m_Center: {x: -0.00000009313226, y: 0.49999735, z: -0.00000047683716}
 --- !u!1001 &1975053583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29197,18 +29221,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1068872951946477117, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
-      propertyPath: m_Center.y
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1068872951946477117, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
-      propertyPath: m_SkinWidth
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1068872951946477117, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
-      propertyPath: m_StepOffset
-      value: 0.0001
-      objectReference: {fileID: 0}
     - target: {fileID: 4287297445816148249, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -29267,7 +29279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5962961453370745771, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 7056437029127475820, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: m_Name
@@ -29275,12 +29287,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056437029127475820, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Fire
       objectReference: {fileID: 0}
-    - target: {fileID: 7152963686113035581, guid: 3fc7beb30927ea14586ef5eef9bc2731, type: 3}
-      propertyPath: rio
-      value: 
-      objectReference: {fileID: 1974069762}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

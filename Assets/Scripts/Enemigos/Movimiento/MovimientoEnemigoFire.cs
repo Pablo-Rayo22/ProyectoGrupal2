@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System.Collections;
 
 public class MovimientoEnemigoFire : MonoBehaviour
 {
@@ -19,9 +21,10 @@ public class MovimientoEnemigoFire : MonoBehaviour
     private AudioSource audioPasos;
     public GameObject bola_fuego;
     public Transform spawnPoint;
-   
-
+    private GameObject player;
+    public MeshCollider rio;
     
+
 
     void Awake()
     {
@@ -29,13 +32,21 @@ public class MovimientoEnemigoFire : MonoBehaviour
         animator = GetComponent<Animator>();
         cameraTransform = Camera.main.transform;
         audioPasos = GetComponent<AudioSource>();
+        player = GameObject.Find("Jugador");
+        rio.isTrigger = false;
+       
 
     }
 
     void Update()
     {
+        
+           
+       
+        
+
         //  Verificar si est� en el suelo
-        enSuelo = controller.isGrounded;
+            enSuelo = controller.isGrounded;
 
         //  Correr (Shift izquierdo)
         bool estaCorriendo = Input.GetKey(KeyCode.LeftShift);
@@ -109,7 +120,26 @@ public class MovimientoEnemigoFire : MonoBehaviour
                 audioPasos.Stop();
             }
         }
+
+
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f))
+        {
+            if (hit.collider.tag == "Agua")
+            {
+                if (!rio.isTrigger) 
+                    rio.isTrigger = !rio.isTrigger;
+                else
+                {
+                    JugadorVida jugador = player.GetComponent<JugadorVida>();
+                    jugador.Morir();
+                }            
+            }
+            
+        }
     }
+
+      
+               
 
     void ActualizarAnimacionesFire(float moverMagnitud, bool estaCorriendo)
     {
@@ -125,6 +155,5 @@ public class MovimientoEnemigoFire : MonoBehaviour
         
     }
 
-    
-    
+       
 }
