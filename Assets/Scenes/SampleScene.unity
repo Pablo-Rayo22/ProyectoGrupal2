@@ -43540,7 +43540,7 @@ Transform:
   m_GameObject: {fileID: 1918074104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.8, z: -0.16}
+  m_LocalPosition: {x: -2, y: 1.8, z: -1.8}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -45349,12 +45349,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 1818a52ff8325a04f8566b23214ff456, type: 2}
     - target: {fileID: 5866666021909216657, guid: ea30e281f596b864b8cfccdcbdfa225f, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Hips'\n\tTransform 'LeftArm'\n\tTransform
-        'Head'\n\tTransform 'LeftForeArm'\n\tTransform 'LeftHand'\n\tTransform 'RightShoulder'\n\tTransform
-        'LeftLeg'\n\tTransform 'RightForeArm'\n\tTransform 'Spine01'\n\tTransform
-        'Spine'\n\tand more ...\n\tFrom animation clip 'Armature|Armature|Dead|baselayer'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: ea30e281f596b864b8cfccdcbdfa225f, type: 3}
       propertyPath: m_ApplyRootMotion
