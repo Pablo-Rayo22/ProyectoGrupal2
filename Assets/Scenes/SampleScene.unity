@@ -43349,18 +43349,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3588533186607898393, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
   m_PrefabInstance: {fileID: 4189575507291337623}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1912486250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912486248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0a86976e40a7cc4b9a5b8f5b99bcf56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjetoMortal
 --- !u!65 &1912486251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48781,9 +48769,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3588533186607898393, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1912486251}
-    - targetCorrespondingSourceObject: {fileID: 3588533186607898393, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1912486250}
   m_SourcePrefab: {fileID: 100100000, guid: db74b33975b51ec45b8bcf5d08ad7bd5, type: 3}
 --- !u!1001 &6570949739127889750
 PrefabInstance:
