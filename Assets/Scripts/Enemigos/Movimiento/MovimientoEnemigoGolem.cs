@@ -95,13 +95,6 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         // Pasos
         reproducirSonidoPasos(moverDireccion);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //DaniarJugador(collision.gameObject);
-        
-    }
-
     private IEnumerator Atacar(float tiempoEnAtacar)
     { 
         animator.SetTrigger("Atacando");
@@ -150,15 +143,5 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         audioGolpe.loop = false;
         audioGolpe.Play();
     }
-
-    //private void DaniarJugador(GameObject collider)
-    //{
-    //    if (collider.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Jugador tocado: " + collider.name);
-    //    }
-    //}
-
-
 }
 

@@ -107,7 +107,6 @@ public class GameManager : MonoBehaviour
                puntoImpacto
             );
 
-
         RomperCaja();
 
         int cantidad = Random.Range(1, 3);
