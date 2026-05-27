@@ -7,6 +7,7 @@ TagManager:
   - Proyectil
   - Caja
   - Agua
+  - Musica
   layers:
   - Default
   - TransparentFX
