@@ -375,6 +375,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c120eb199b5f00409c2f76450473230, type: 3}
       insertIndex: -1
       addedObject: {fileID: 274036420740863201}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c120eb199b5f00409c2f76450473230, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8075627085252457092}
   m_SourcePrefab: {fileID: 100100000, guid: 3c120eb199b5f00409c2f76450473230, type: 3}
 --- !u!4 &107104528282741509 stripped
 Transform:
@@ -465,7 +468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e0b808df10f7041a70101768dabda3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoEnemigoGolem
-  prueba: {fileID: 0}
   velocidadCaminando: 5
   velocidadCorriendo: 10
   velocidadRotacion: 100
@@ -492,3 +494,15 @@ MonoBehaviour:
   tiempoRotacion: 2
   audioPasos: {fileID: 8717617217950717418}
   sonidoPasos: {fileID: 8300000, guid: 413fcea6b0ebaa74484f50f372f5fb9b, type: 3}
+--- !u!114 &8075627085252457092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736149065931207103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a86976e40a7cc4b9a5b8f5b99bcf56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjetoMortal

@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
             );
 
 
-        GameManager.instancia.RomperCaja();
+        RomperCaja();
 
         int cantidad = Random.Range(1, 3);
 

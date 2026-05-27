@@ -9,7 +9,6 @@ public class MovimientoEnemigoGolem : MonoBehaviour
     private CharacterController controller;
     private Animator animator;
     private Transform cameraTransform;
-    public Cristal cristal;
 
     public float velocidadCaminando = 5f;
     public float velocidadCorriendo = 10f;
@@ -99,7 +98,7 @@ public class MovimientoEnemigoGolem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        DaniarJugador(collision.gameObject);
+        //DaniarJugador(collision.gameObject);
         
     }
 
@@ -123,16 +122,6 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         
         // Parámetro para velocidad de movimiento 
         animator.SetFloat("Velocidad", moverMagnitud);
-        
-        //animator.SetBool("Muerto", true); 
-        // Parámetro para saber si está corriendo
-        //animator.SetBool("IsRunning", estaCorriendo && moverMagnitud > 0.1f);
-
-        // Parámetro para saber si está en el suelo
-        //animator.SetBool("IsGrounded", enSuelo);
-
-        // Velocidad vertical para animaciones de caída
-        //animator.SetFloat("VerticalVelocity", velocity.y);
     }
 
     public void reproducirSonidoPasos(Vector3 moverDireccion)
@@ -162,13 +151,13 @@ public class MovimientoEnemigoGolem : MonoBehaviour
         audioGolpe.Play();
     }
 
-    private void DaniarJugador(GameObject collider)
-    {
-        if (collider.CompareTag("Player"))
-        {
-            Debug.Log("Jugador tocado: " + collider.name);
-        }
-    }
+    //private void DaniarJugador(GameObject collider)
+    //{
+    //    if (collider.CompareTag("Player"))
+    //    {
+    //        Debug.Log("Jugador tocado: " + collider.name);
+    //    }
+    //}
 
 
 }
