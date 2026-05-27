@@ -6,7 +6,6 @@ public class ObjetoMortal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("He entrado en el Trigger");
             JugadorVida jugador =
                 other.GetComponent<JugadorVida>();
 
