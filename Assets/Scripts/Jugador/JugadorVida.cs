@@ -97,7 +97,9 @@ public class JugadorVida : MonoBehaviour
         muerto = false;
         //MonoBehaviour movimiento = GetComponent<MovimientoJugador>();
         if (movimiento != null)
+        {
             movimiento.enabled = true;
+        }
 
         animator.ResetTrigger("Morir");
         animator.Play("Idle");
