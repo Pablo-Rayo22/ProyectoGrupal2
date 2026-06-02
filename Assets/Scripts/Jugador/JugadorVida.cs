@@ -8,15 +8,21 @@ public class JugadorVida : MonoBehaviour
     private Rigidbody rb;
 
     private bool muerto = false;
-
+    //private bool checkPointAlcanzado = false;
+    //private Vector3 posicionActual;
+    //private Vector3 posicionInicial;
     [Header("MUERTE")]
     public float tiempoMuerte = 2f;
+    private MovimientoJugador movimiento;
 
-    void Awake()
+    private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
+        movimiento = GetComponent<MovimientoJugador>();
+        // Guardar posición inicial SOLO la primera vez que aparece en la escena
     }
+
 
     public void Morir()
     {
@@ -33,7 +39,7 @@ public class JugadorVida : MonoBehaviour
 
         animator.SetTrigger("Morir");
 
-        MonoBehaviour movimiento = GetComponent<MovimientoJugador>();
+        //MonoBehaviour movimiento = GetComponent<MovimientoJugador>();
 
         if (movimiento != null)
         {
@@ -41,7 +47,7 @@ public class JugadorVida : MonoBehaviour
         }
         if (GameManager.instancia.vidas > 0)
         {
-            StartCoroutine(ReiniciarEscena());
+            StartCoroutine(ReiniciarEscena(gameObject));
         }
         else 
         { 
@@ -50,22 +56,58 @@ public class JugadorVida : MonoBehaviour
 
     }
 
-    IEnumerator ReiniciarEscena()
+    //private IEnumerator ReiniciarEscena()
+    //{
+    //    yield return new WaitForSeconds(tiempoMuerte);
+
+    //    GameManager.instancia.cajasRotas = 0;
+
+    //    SceneManager.LoadScene(
+    //        SceneManager.GetActiveScene().buildIndex
+    //    );
+    //}
+
+    private IEnumerator ReiniciarEscena(GameObject jugador)
     {
         yield return new WaitForSeconds(tiempoMuerte);
 
         GameManager.instancia.cajasRotas = 0;
 
-        SceneManager.LoadScene(
-            SceneManager.GetActiveScene().buildIndex
-        );
+        Rigidbody rb = jugador.GetComponent<Rigidbody>();
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        if (GameManager.instancia.hayCheckPoint)
+        {
+            Vector3 respawnPos = GameManager.instancia.posicionCheckpoint;
+
+            rb.isKinematic = true;
+            rb.position = respawnPos;
+            yield return null;
+            rb.isKinematic = false;
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            yield break;
+        }
+
+        // 🔥 RESET DE ESTADO
+        muerto = false;
+        //MonoBehaviour movimiento = GetComponent<MovimientoJugador>();
+        if (movimiento != null)
+            movimiento.enabled = true;
+
+        animator.ResetTrigger("Morir");
+        animator.Play("Idle");
     }
 
     private IEnumerator GameOver()
     {
         yield return new WaitForSeconds(tiempoMuerte);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
         GameManager.instancia.reiniciarUI();
+        GameManager.instancia.posicionCheckpoint = Vector3.zero;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
     }
-    
 }

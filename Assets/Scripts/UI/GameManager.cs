@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     [Header("VIDAS")]
     public int vidasIniciales = 5;
     public int vidas;
-    
     public TextMeshProUGUI textoVidas;
 
     [Header("DIAMANTES")]
@@ -23,6 +22,10 @@ public class GameManager : MonoBehaviour
     public AudioClip sonidoImpacto;
     public AudioClip sonidoRomperCaja;
     public GameObject cristalPrefab;
+
+    [Header("CHECKPOINT")]
+    public bool hayCheckPoint = false;
+    public Vector3 posicionCheckpoint;
 
     void Awake()
     {
@@ -67,7 +70,11 @@ public class GameManager : MonoBehaviour
 
         ActualizarUI();
     }
-
+    public void GuardarCheckpoint(Vector3 pos)
+    {
+        posicionCheckpoint = pos;
+        hayCheckPoint = true;
+    }
     public void ActualizarUI()
     {
         if (textoVidas != null)
