@@ -40,13 +40,13 @@ public class MovimientoEnemigoFire : MonoBehaviour
 
     void Update()
     {
-        
-           
-       
-        
+
+
+
+
 
         //  Verificar si est� en el suelo
-            enSuelo = controller.isGrounded;
+        enSuelo = controller.isGrounded;
 
         //  Correr (Shift izquierdo)
         bool estaCorriendo = Input.GetKey(KeyCode.LeftShift);
@@ -126,20 +126,30 @@ public class MovimientoEnemigoFire : MonoBehaviour
         {
             if (hit.collider.tag == "Agua")
             {
-                if (!rio.isTrigger) 
+                if (!rio.isTrigger)
                     rio.isTrigger = !rio.isTrigger;
                 else
                 {
                     JugadorVida jugador = player.GetComponent<JugadorVida>();
                     jugador.Morir();
-                }            
+                }
             }
             
         }
-    }
 
+
+        
+    }
       
-               
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pocion"))
+        {
+            GameManager.instancia.vidas++;
+            Destroy(other.gameObject);
+            GameManager.instancia.ActualizarUI();
+        }
+    }
 
     void ActualizarAnimacionesFire(float moverMagnitud, bool estaCorriendo)
     {

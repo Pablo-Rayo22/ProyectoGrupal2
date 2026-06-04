@@ -5,7 +5,7 @@ using UnityEngine;
 public class bolaFuego : MonoBehaviour
 {
     public float poder = 20f;
-    public float tiempoVida = 5f;
+    public float tiempoVida = 2f;
     private float deltatime = 0f;
     public AudioClip sonidoImpacto;
     public AudioClip sonidoRomperCaja;
@@ -55,6 +55,7 @@ public class bolaFuego : MonoBehaviour
         if (collision.tag == "Caja")
         {
             GameManager.instancia.GenerarDiamantes(collision);
+            Destroy(this.gameObject);
         }
     }
 }
