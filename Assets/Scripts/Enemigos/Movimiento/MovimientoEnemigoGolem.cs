@@ -107,6 +107,17 @@ public class MovimientoEnemigoGolem : MonoBehaviour
                 GameManager.instancia.GenerarDiamantes(colliders[i]);
                 reproducirSonidoGolpe();
             }
+
+            if (colliders[i].CompareTag("Roca"))
+            {
+                RocaRompible roca = colliders[i].GetComponent<RocaRompible>();
+
+                if (roca != null)
+                {
+                    roca.Romper();
+                    reproducirSonidoGolpe();
+                }
+            }
         }
     }
 

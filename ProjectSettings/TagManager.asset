@@ -9,6 +9,8 @@ TagManager:
   - Agua
   - Musica
   - Pocion
+  - Roca
+  - Enemigo
   layers:
   - Default
   - TransparentFX

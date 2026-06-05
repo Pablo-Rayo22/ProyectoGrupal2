@@ -57,6 +57,11 @@ public class bolaFuego : MonoBehaviour
             GameManager.instancia.GenerarDiamantes(collision);
             Destroy(this.gameObject);
         }
+        if (collision.CompareTag("Enemigo"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }
     

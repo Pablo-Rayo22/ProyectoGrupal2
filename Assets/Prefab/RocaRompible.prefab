@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7676728446923233709
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.982064
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 44.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.72338176
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6904483
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 87.331
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240275427839143477, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8723620341677241487, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_Name
+      value: RocaRompible
+      objectReference: {fileID: 0}
+    - target: {fileID: 8723620341677241487, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      propertyPath: m_TagString
+      value: Roca
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8723620341677241487, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3609500105990693448}
+  m_SourcePrefab: {fileID: 100100000, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+--- !u!1 &1412355268959137058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8723620341677241487, guid: 340aa95c75f0ad14f9d49217100736cc, type: 3}
+  m_PrefabInstance: {fileID: 7676728446923233709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3609500105990693448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412355268959137058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb0ddc2f6484b84e95e75f7d6a5a10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RocaRompible
