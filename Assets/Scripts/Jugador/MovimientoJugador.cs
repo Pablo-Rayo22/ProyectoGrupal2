@@ -93,6 +93,8 @@ public class MovimientoJugador : MonoBehaviour
         // DETECTAR PARED
         bool hayPared = Physics.Raycast(transform.position, transform.forward, 0.7f);
 
+        //Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.red);
+
         // MOVIMIENTO
         Vector3 velocidadFinal;
 

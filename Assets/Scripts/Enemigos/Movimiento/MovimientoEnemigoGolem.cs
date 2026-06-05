@@ -14,8 +14,7 @@ public class MovimientoEnemigoGolem : MonoBehaviour
     public float velocidadCorriendo = 10f;
     public float velocidadRotacion = 100f;
     public float alcanceGolpe = 1.5f;
-    [Range (0.6f, 0.8f)]
-    public float tiempoEnAtacar = 1f;
+    public float tiempoEnAtacar = 0.6f;
     public AudioSource audioPasos;
     public AudioSource audioGolpe;
     public AudioClip sonidoPasos;
@@ -72,13 +71,6 @@ public class MovimientoEnemigoGolem : MonoBehaviour
             Quaternion rotacionObjetivo = Quaternion.LookRotation(moverDireccion);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, 10f * Time.deltaTime);
         }
-
-        //  Salto
-        /* if (Input.GetButtonDown("Jump") && enSuelo)
-         {
-             velocidad.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
-             animator.SetTrigger("Jump"); // Animación de salto
-         }*/
 
         //  Aplicar gravedad
         velocidad.y += gravedad * Time.deltaTime;
