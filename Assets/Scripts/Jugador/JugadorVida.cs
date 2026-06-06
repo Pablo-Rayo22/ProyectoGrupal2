@@ -39,8 +39,6 @@ public class JugadorVida : MonoBehaviour
 
         animator.SetTrigger("Morir");
 
-        //MonoBehaviour movimiento = GetComponent<MovimientoJugador>();
-
         if (movimiento != null)
         {
             movimiento.enabled = false;
@@ -55,17 +53,6 @@ public class JugadorVida : MonoBehaviour
         }
 
     }
-
-    //private IEnumerator ReiniciarEscena()
-    //{
-    //    yield return new WaitForSeconds(tiempoMuerte);
-
-    //    GameManager.instancia.cajasRotas = 0;
-
-    //    SceneManager.LoadScene(
-    //        SceneManager.GetActiveScene().buildIndex
-    //    );
-    //}
 
     private IEnumerator ReiniciarEscena(GameObject jugador)
     {

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine;
+using UnityEditor;
 
 public class Parasitar : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class Parasitar : MonoBehaviour
 
     private void Start()
     {
-        tipoEnemigo = this.transform.gameObject.name;
+        tipoEnemigo = transform.gameObject.name;
         DesactivarControlEnemigos();
     }
     
@@ -117,14 +118,14 @@ public class Parasitar : MonoBehaviour
     }
     private IEnumerator Morir(float tiempoMuerte)
     {
-
+        enemigoGolem.GetComponent<SphereCollider>().enabled = false;
         animator.SetTrigger("Muerto");
         DesactivarControlEnemigos();
         yield return new WaitForSeconds(tiempoMuerte);
         if (tipoEnemigo == tiposEnemigos[0]) {
             if (enemigoGolem != null)
             {
-                
+                //enemigoGolem.enabled = false;
                 Destroy (enemigoGolem.gameObject);
             }
         }
@@ -132,8 +133,8 @@ public class Parasitar : MonoBehaviour
         {
             if (enemigoFire != null)
             {
-                enemigoFire.enabled = false;
-                Destroy (enemigoFire.gameObject);
+                //enemigoFire.enabled = false;
+                Destroy(enemigoFire.gameObject);
             }
         }
     }
